@@ -14,7 +14,7 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
     <div className="intro-copy">
       <p className="eyebrow" lang="en"><span className="tiny-star">✳</span> A LITTLE NOTE, JUST FOR YOU</p>
       <h1 id="intro-heading" tabIndex={-1}>Чамаас нэг<br /><em>хөөрхөн зүйл</em><br />асууя<span className="period">.</span></h1>
-      <p className="intro-description">Чамд зориулж бяцхан захиа бэлдлээ.<br />Хамтдаа өнгөрүүлэх цаг, дөрвөн жижигхэн санаа.<br />Нээгээд үзэх үү?</p>
+      <p className="intro-description">Чамд зориулж бяцхан захиа бэлдлээ.<br />Хамтдаа өнгөрүүлэх цаг, хэдэн хөөрхөн санаа.<br />Нээгээд үзэх үү?</p>
       <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Захиаг чинь нээж байна…' : 'Захиагаа нээх'} <Heart /></button>
       <span className="handwritten intro-ps" lang="en">p.s. this little corner is just for you.</span>
     </div>

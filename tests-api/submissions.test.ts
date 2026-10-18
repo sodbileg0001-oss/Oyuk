@@ -211,3 +211,16 @@ test('a flexible day remains optional and the email says it has not been chosen'
     assert.ok(email.text.includes('Өдөр сонгоогүй.')); assert.ok(email.html.includes('Өдөр сонгоогүй.'))
   }, { fetch: async (_, init) => { email = JSON.parse(String(init?.body)); return accepted() } })
 })
+
+test('Canvas art is accepted as the fifth option and its real title is sent to the configured recipient', async () => {
+  let email: any
+  const input = { ...answer, selectedDateId: 'canvas', selectedDateTitle: 'untrusted browser title' }
+  await fixture(async call => {
+    const prepared = await call({ ...input, intent: 'prepare' })
+    assert.equal(prepared.status, 200)
+    assert.equal((await call({ ...input, intent: 'submit', submissionToken: prepared.body.submissionToken })).status, 200)
+    assert.deepEqual(email.to, [configured.NOTIFICATION_EMAIL])
+    assert.ok(email.text.includes('Canvas art')); assert.ok(email.html.includes('Canvas art'))
+    assert.ok(!email.text.includes('untrusted browser title')); assert.ok(!email.html.includes('untrusted browser title'))
+  }, { fetch: async (_, init) => { email = JSON.parse(String(init?.body)); return accepted() } })
+})

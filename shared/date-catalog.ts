@@ -4,6 +4,7 @@ export const dateCatalog = {
   theatre: 'Амьтны ферм жүжиг',
   exhibition: 'Социализмаар аялцгаая',
   basketball: 'Үндэсний дээд лиг',
+  canvas: 'Canvas art',
 } as const
 
 export type DateId = keyof typeof dateCatalog

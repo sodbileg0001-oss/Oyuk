@@ -160,5 +160,67 @@
         "height": 365
       }
     ]
+  },
+  {
+    "id": "canvas",
+    "folder": "Canvas art",
+    "instructionFile": "content/canvas.md",
+    "notes": [
+      {
+        "filename": "content/canvas.md",
+        "source": "project",
+        "text": "# Canvas art\n\nInstructions supplied by the invitation's author in the conversation:\n\nShe has already received the canvas and painting tools that I prepared.\nWe can paint together on any day that works for both of us.\nPossible date time: Anytime\n\nThe eight images in the Canvas art folder are painting inspiration.\nNo specific venue, price, appointment time, or booking was supplied.\nThe original folder contains no separate text instruction file; this note records the author's instructions without changing that folder."
+      }
+    ],
+    "images": [
+      {
+        "filename": "4021ae27d8e09259800c6186227c1103.jpg",
+        "src": "/dates/canvas/4021ae27d8e09259800c6186227c1103.jpg",
+        "width": 736,
+        "height": 981
+      },
+      {
+        "filename": "432f620bc13f4ed0de29d5f15db1c035.jpg",
+        "src": "/dates/canvas/432f620bc13f4ed0de29d5f15db1c035.jpg",
+        "width": 340,
+        "height": 270
+      },
+      {
+        "filename": "6320573f66e6381610b9550f5d164559.jpg",
+        "src": "/dates/canvas/6320573f66e6381610b9550f5d164559.jpg",
+        "width": 750,
+        "height": 1000
+      },
+      {
+        "filename": "969f08061486235418539e1a3ff38d4d.jpg",
+        "src": "/dates/canvas/969f08061486235418539e1a3ff38d4d.jpg",
+        "width": 735,
+        "height": 730
+      },
+      {
+        "filename": "Screenshot 2026-10-19 001036.png",
+        "src": "/dates/canvas/Screenshot%202026-10-19%20001036.png",
+        "width": 330,
+        "height": 304
+      },
+      {
+        "filename": "a72966b74e3d2a57dfe033f5774790a4.jpg",
+        "src": "/dates/canvas/a72966b74e3d2a57dfe033f5774790a4.jpg",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "filename": "bb44aea35127b18f6a0efd7555c56a68.jpg",
+        "src": "/dates/canvas/bb44aea35127b18f6a0efd7555c56a68.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "filename": "blanck_canvas_12x15_2.jpg",
+        "src": "/dates/canvas/blanck_canvas_12x15_2.jpg",
+        "width": 750,
+        "height": 750
+      }
+    ]
   }
 ]

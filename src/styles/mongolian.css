@@ -15,6 +15,24 @@
 .view-basketball .site-footer,.view-basketball .site-header .restart-button,.view-basketball .timing-note small{color:#bdcbe6}
 .view-basketball :is(button,a):focus-visible{outline-color:#b8c7ff}
 .view-basketball .button-themed,.view-basketball .detail-photo-frame{color:var(--photo-ink)}
+.folder-canvas{grid-column:1/-1;display:grid;grid-template-columns:1.05fr 1fr;align-items:center}
+.folder-canvas .folder-art{height:335px;min-width:0}
+.folder-canvas .folder-copy{border-top:0;border-left:1px solid #72517b40;margin:25px 32px 25px 0;padding:20px 0 20px 32px}
+.canvas-paper-lines{position:absolute;inset:19px;border:1px solid #72517b25;background:repeating-linear-gradient(0deg,transparent 0 27px,#72517b0c 28px,transparent 29px)}
+.canvas-main{position:absolute;top:24px;left:17%;width:190px;padding:9px;background:#fcf9f0;transform:rotate(-7deg);box-shadow:3px 6px 12px #45374f24;z-index:1}
+.canvas-main img{aspect-ratio:3/4;object-fit:cover}
+.canvas-mini{position:absolute;right:10%;top:102px;width:113px;padding:7px;background:#fcf9f0;transform:rotate(9deg);box-shadow:2px 5px 10px #45374f20;z-index:2}
+.canvas-mini img{aspect-ratio:3/4;object-fit:cover}
+.canvas-tape{position:absolute;top:17px;left:34%;width:76px;height:23px;background:#c0b58d85;transform:rotate(-4deg);z-index:3;clip-path:polygon(0 0,100% 3%,97% 30%,100% 58%,96% 100%,0 95%,4% 70%,0 38%)}
+.paint-swatches{display:flex;gap:7px;position:absolute;left:29px;top:29px;transform:rotate(-12deg);flex-direction:column}
+.paint-swatches i{display:block;width:18px;height:19px;border-radius:44% 56% 49% 51%;background:#d2b46c}.paint-swatches i:nth-child(2){background:#a6b38c}.paint-swatches i:nth-child(3){background:#c5908b}.paint-swatches i:nth-child(4){background:#b2a0c8}
+.canvas-note{position:absolute;left:26%;bottom:12px;font-size:16px;transform:rotate(-3deg)}
+.palette-doodle{position:absolute;right:10%;top:27px;color:#72517b;transform:rotate(9deg)}
+.detail-canvas .detail-photo-frame{background:#fcf9f0;transform:rotate(-3deg)}
+.detail-canvas .detail-photo-frame::before{content:'';position:absolute;left:35%;top:-10px;width:95px;height:27px;background:#c5b2ce85;transform:rotate(5deg);z-index:1}
+.gallery-canvas .photo-masonry{columns:4}.gallery-canvas .gallery-photo{border:8px solid #fcf9f0;box-shadow:2px 4px 9px #45374f12}
+@media(max-width:1050px){.canvas-main{left:15%;width:174px;top:35px}.canvas-mini{right:8%;width:100px;top:116px}.paint-swatches{left:22px}.palette-doodle{right:8%;width:58px}.folder-canvas .folder-copy{padding-left:25px;margin-right:25px}.canvas-note{left:21%;font-size:14px}}
+@media(max-width:760px){.folder-canvas{grid-column:auto;grid-template-columns:1fr}.folder-canvas .folder-art{height:320px}.folder-canvas .folder-copy{border-left:0;border-top:1px solid #72517b40;margin:0 25px;padding:21px 0 23px}.canvas-main{left:19%;top:24px;width:177px}.canvas-mini{right:10%;top:118px;width:100px}.palette-doodle{right:9%;top:27px;width:56px}.paint-swatches{left:27px;top:27px}.canvas-note{left:22%;font-size:14px;bottom:13px}.gallery-canvas .photo-masonry{columns:2}.gallery-canvas .gallery-photo{border-width:6px}}
 .lightbox-bottom{justify-content:center;gap:32px}
 .handwritten{font-style:italic;font-size:19px;line-height:1.65}
 .intro h1{font-size:clamp(46px,4.4vw,63px);line-height:1.2;letter-spacing:-.045em}

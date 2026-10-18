@@ -48,6 +48,29 @@ const artDirection = {
     palette: { paper: '#c5cbea', ink: '#25274e', accent: '#3c4390', background: '#101d42', pageInk: '#f5f1e7', pageAccent: '#b8c7ff' }, coverIndex: 0,
     alts: ['Үндэсний дээд лигийн багуудын лого, тоглолтуудын хуваарь бүхий хөх дэвсгэртэй зураг'], linkLabels: ['Лигийн Facebook хуудас'],
   },
+  canvas: {
+    subtitle: 'Манай бяцхан урлан.', category: 'A LITTLE ART, A LITTLE US',
+    teaser: 'Өнгөө сонгоод, дурсамжаа зуръя.',
+    introduction: 'Зотон, зурах хэрэгслүүдийг нь бэлдээд чамд өгчихсөн шүү. Одоо хоёулаа өнгөө сонгоод, хүссэн зургаа зурж, нэг хөөрхөн дурсамж бүтээе. Хоёуланд маань тохирох өдөр байхад л болно.',
+    annotation: 'a little art, a little us ♡',
+    // Lilac canvases, soft greens and butter-yellow paint in the supplied art.
+    palette: { paper: '#e1d2e9', ink: '#45374f', accent: '#72517b', background: '#f0e8f2' }, coverIndex: 0,
+    coverFilename: 'bb44aea35127b18f6a0efd7555c56a68.jpg',
+    // Associate descriptions with the files we inspected, independent of the
+    // discovery order (uppercase Screenshot sorts before lowercase filenames).
+    alts: [] as string[],
+    photoAlts: {
+      '4021ae27d8e09259800c6186227c1103.jpg': 'Цайвар нил ягаан зотон дээрх цагаан нугасны бяцхан зураг',
+      '432f620bc13f4ed0de29d5f15db1c035.jpg': 'Хар дэвсгэр дээрх шар нугасны зотон зураг',
+      '6320573f66e6381610b9550f5d164559.jpg': 'Улаан мөөгөн дээр гитар тоглож буй титэмтэй мэлхийний зураг',
+      '969f08061486235418539e1a3ff38d4d.jpg': 'Цэнхэр тэнгэрийн өмнөх Том, Жерри хоёрын зотон зураг',
+      'a72966b74e3d2a57dfe033f5774790a4.jpg': 'Цайвар шар дэвсгэр дээр амаа ангайсан муурны зураг',
+      'bb44aea35127b18f6a0efd7555c56a68.jpg': 'Жижиг модон суурин дээрх улаан мөөгтэй зотон зураг',
+      'blanck_canvas_12x15_2.jpg': 'Ногоон байгаль, модны мөчрөөс дүүжилсэн савлууртай зотон зураг',
+      'Screenshot 2026-10-19 001036.png': 'Цэнхэр дэвсгэрийн өмнө сандал дээр суусан оцон шувууны зураг',
+    },
+    linkLabels: [],
+  },
 } satisfies Record<DateId, object>
 
 function localizeTiming(value: string) {
@@ -62,9 +85,11 @@ export const dates: DateIdea[] = manifest.map((source, index) => {
   const direction = artDirection[id]
   const note = source.notes.map(item => item.text).join('\n\n')
   const sourceTiming = note.match(/Possible date time:\s*([^\r\n]+)/i)?.[1]?.trim() ?? 'Хамтдаа шийдье'
-  const photos = source.images.map((image, i) => ({ ...image, alt: direction.alts[i] ?? `${source.folder} — зураг ${i + 1}` }))
+  const photoAlts: Record<string, string> = 'photoAlts' in direction ? direction.photoAlts : {}
+  const photos = source.images.map((image, i) => ({ ...image, alt: photoAlts[image.filename] ?? direction.alts[i] ?? `${source.folder} — зураг ${i + 1}` }))
+  const coverFilename = 'coverFilename' in direction ? direction.coverFilename : undefined
   const urls = [...note.matchAll(/https?:\/\/[^\s]+/g)].map(match => match[0])
-  return { id, number: String(index + 1).padStart(2, '0'), ...direction, title: dateCatalog[id], timing: localizeTiming(sourceTiming), sourceTiming, photos, cover: photos[direction.coverIndex] ?? photos[0], links: urls.map((href, i) => ({ href, label: direction.linkLabels[i] ?? 'Дэлгэрэнгүй үзэх' })) }
+  return { id, number: String(index + 1).padStart(2, '0'), ...direction, title: dateCatalog[id], timing: localizeTiming(sourceTiming), sourceTiming, photos, cover: photos.find(photo => photo.filename === coverFilename) ?? photos[direction.coverIndex] ?? photos[0], links: urls.map((href, i) => ({ href, label: direction.linkLabels[i] ?? 'Дэлгэрэнгүй үзэх' })) }
 })
 
 export function getDate(id: string | null): DateIdea | undefined { return dates.find(date => date.id === id) }

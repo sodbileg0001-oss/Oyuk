@@ -25,7 +25,7 @@ export function PhotoGallery({ date }: { date: DateIdea }) {
     }
   }
   return <section className={`photo-gallery gallery-${date.id}`} aria-labelledby="gallery-heading">
-    <div className="gallery-heading"><div><span className="eyebrow" lang="en">A CLOSER LOOK</span><h2 id="gallery-heading">Хэдэн бяцхан агшин<span>.</span></h2></div><span className="handwritten" lang="en">tap a photo, linger a little</span></div>
+    <div className="gallery-heading"><div><span className="eyebrow" lang="en">{date.id === 'canvas' ? 'A LITTLE INSPIRATION' : 'A CLOSER LOOK'}</span><h2 id="gallery-heading">{date.id === 'canvas' ? 'Жаахан санаа авах уу' : 'Хэдэн бяцхан агшин'}<span>{date.id === 'canvas' ? '?' : '.'}</span></h2></div><span className="handwritten" lang="en">{date.id === 'canvas' ? 'our canvas, our little world' : 'tap a photo, linger a little'}</span></div>
     <div className="photo-masonry">{date.photos.map((photo, index) => <figure key={photo.src}>
       <button className="gallery-photo" onClick={event => { trigger.current = event.currentTarget; setActive(index) }} aria-label={`Зураг ${index + 1}-ийг томруулах: ${photo.alt}`}>
         <Photo photo={photo} /><span className="photo-zoom" aria-hidden="true">↗</span>

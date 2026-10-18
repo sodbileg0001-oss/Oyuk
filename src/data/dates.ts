@@ -41,7 +41,7 @@ const artDirection = {
   },
   basketball: {
     subtitle: 'Хоёулаа нэг баг.', category: 'ON THE SAME TEAM',
-    teaser: 'Гоё тоглолт. Сайхан хань. Хоёулаа.',
+    teaser: 'Хамтдаа тоглолт үзье.',
     introduction: 'Үндэсний дээд лигийн сагсан бөмбөгийн тоглолтыг хамт үзэх үү? Хамтдаа догдолж, багаа дэмжээд, нэг оройг хөгжилтэй өнгөрөөе.',
     annotation: 'you + me, same team ♡',
     // Midnight blue from the schedule; light page text and lavender paper details.

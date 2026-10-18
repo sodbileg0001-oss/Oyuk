@@ -1,0 +1,15 @@
+.env*
+!.env.example
+.npm-cache/
+.git/
+.openai/
+qa/
+tests/
+tests-api/
+test-results/
+playwright-report/
+node_modules/
+dist/
+*.tsbuildinfo
+.local-credentials/
+github.env

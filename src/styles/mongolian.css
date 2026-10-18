@@ -1,0 +1,91 @@
+/* The existing scrapbook compositions, tuned for the wider Mongolian letterforms. */
+.app{min-height:100svh;transition:background-color .25s ease}
+.lightbox-bottom{justify-content:center;gap:32px}
+.handwritten{font-style:italic;font-size:19px;line-height:1.65}
+.intro h1{font-size:clamp(46px,4.4vw,63px);line-height:1.2;letter-spacing:-.045em}
+.intro-description{font-size:13px;line-height:1.95}
+.intro-ps{font-size:13px;margin-top:20px;line-height:1.8}
+.wordmark>span{font-size:27px}
+.envelope-annotation{font-size:17px;line-height:1.6;right:17px}
+.sealed-note{font-size:16px;left:24px;bottom:44px}
+.letter-insert>.handwritten{font-size:20px}
+.postage-stamp>span{font-size:11px}
+.section-heading h1{font-size:47px;line-height:1.3;letter-spacing:-.04em}
+.options-margin>.handwritten{font-size:15px;max-width:200px;line-height:1.8}
+.options-intro{font-size:13px;line-height:1.95;max-width:600px}
+.folder-title{font-size:28px;line-height:1.4;letter-spacing:-.035em}
+.folder-teaser{font-size:12px;line-height:1.8;min-height:22px}
+.folder-category{font-size:8px;line-height:1.7;letter-spacing:.09em}
+.folder-tab{width:185px;font-size:8px;letter-spacing:.06em}
+.polaroid>.handwritten{font-size:13px;line-height:1.9;padding:6px 0 9px}
+.round-sticker{font-size:9px;line-height:1.8}
+.round-sticker i{font-size:16px}
+.ticket-stub>i{font-size:19px;line-height:1.25}
+.ticket-stub>span{font-size:6px;letter-spacing:.05em}
+.travel-stamp i{font-size:19px}.travel-stamp{font-size:6px;line-height:1.6}
+.archive-note{font-size:14px;bottom:14px}.league-note{font-size:15px;right:40px;top:22px}
+.score-note{font-size:8px}.score-note i{font-size:23px}
+.options-ending>p{font-size:30px;line-height:1.5}
+.detail-copy h1{font-size:43px;line-height:1.4;letter-spacing:-.035em}
+.detail-subtitle{font-size:24px;line-height:1.6}
+.detail-description{font-size:13px;line-height:2}
+.detail-photo-frame>.handwritten{font-size:17px;line-height:1.7}
+.detail-theatre .detail-cover::before{content:'ХОЁР ХҮНИЙ';font-size:8px}
+.source-links>span{font-size:16px}.source-links{flex-wrap:wrap}
+.source-links a{font-size:11px}
+.gallery-heading h2{font-size:33px;line-height:1.5}.gallery-heading>.handwritten{font-size:15px}
+.photo-masonry figcaption{font-size:9px;line-height:1.6}
+.detail-ending>.handwritten{font-size:17px}.detail-ending h2{font-size:46px;line-height:1.5}
+.question-card h1{font-size:52px;line-height:1.4}.question-card>.handwritten{font-size:18px;line-height:1.8}
+.question-card{padding-top:50px}.question-sparkle{top:23%}
+.selected-plan-note{font-size:12px;line-height:1.9;margin:20px 0 25px}
+.response-form{max-width:460px;margin:0 auto;text-align:left}
+.response-form fieldset{margin:0 0 22px;padding:0;border:0;min-width:0}
+.response-form legend{font-size:12px;margin-bottom:10px;font-weight:500}
+.response-choices{display:grid;gap:8px}
+.response-choices label{display:flex;align-items:center;gap:12px;min-height:47px;border:1px solid #d9ccce;padding:10px 14px;font-size:12px;line-height:1.7;cursor:pointer;border-radius:2px;background:#fffcf8}
+.response-choices label.is-checked{border-color:#854658;background:#f0e4e8}
+.response-choices input{accent-color:#854658;width:17px;height:17px;flex-shrink:0;margin:0}
+.response-choices label:has(input:focus-visible){outline:2px solid #854658;outline-offset:3px}
+.message-label{display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:12px;margin-bottom:9px;flex-wrap:wrap}
+.message-label>span{font-size:10px;color:#74616f}
+.response-form textarea{font:inherit;line-height:1.8;font-size:13px;color:var(--ink);background:#fffcf8;border:1px solid #c9b8c1;resize:vertical;min-height:115px;width:100%;display:block;padding:13px 15px;border-radius:2px}
+.response-form textarea:focus{outline:2px solid #854658;outline-offset:3px}
+.response-form textarea::placeholder{color:#74616f;font-size:12px}
+.response-form textarea:disabled,.response-form fieldset:disabled{opacity:.7}
+.message-limit{display:block;font-size:10px;color:#74616f;text-align:right;margin-top:6px}
+.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.submission-error{padding:14px 16px;border-left:3px solid #a44450;background:#f4e3e5;color:#74323f;font-size:12px;line-height:1.85;margin-top:16px;overflow-wrap:anywhere}
+.pending-note{font-size:12px;line-height:1.8;margin-top:15px}
+.response-form .question-actions{margin:25px 0 28px;gap:18px;text-align:center}
+.response-form .question-actions>.text-link{font-size:12px;line-height:1.8;gap:12px}
+.question-footnote{font-size:10px;letter-spacing:0}
+.confirmation-title>.handwritten{font-size:19px;line-height:1.8}.confirmation-title h1{font-size:65px;line-height:1.4}
+.confirmation-title>p:last-child{font-size:14px;line-height:2}.confirmation-doodle>svg{width:44px;height:55px}
+.recap-copy h2{font-size:27px;line-height:1.5}.recap-copy>.eyebrow{font-size:7px;letter-spacing:.06em}
+.recap-copy>.handwritten{font-size:14px;line-height:1.8}.recap-copy>.text-link{font-size:11px}
+.recap-copy>p{font-size:12px}.confirmation-actions>.handwritten{font-size:16px}
+.no-plan-note>p{font-size:23px;line-height:1.8}.site-footer>.handwritten{font-size:13px;line-height:1.8}
+.lightbox-bottom>p{font-size:12px;line-height:1.8}
+@media(max-width:1050px){.section-heading h1{font-size:38px}.options-margin{max-width:180px}.folder-title{font-size:25px}.detail-copy h1{font-size:36px}.gallery-heading h2{font-size:29px}.intro h1{font-size:49px}.intro-ps{font-size:12px}.envelope-annotation{font-size:15px}}
+@media(max-width:760px){
+  .intro h1{font-size:45px;line-height:1.25}.intro .eyebrow{font-size:9px}.intro-description{font-size:13px;line-height:1.9}.intro-ps{font-size:12px;line-height:1.8;margin-left:0}
+  .envelope-annotation{font-size:14px;right:8px;top:0}.sealed-note{font-size:14px;left:20px;bottom:20px}
+  .intro-bottom>span:last-child{font-size:7px;gap:8px}.intro-bottom>span:first-child{font-size:6px;letter-spacing:.04em}
+  .header-note{font-size:9px;line-height:1.7}.site-header nav{font-size:10px}.nav-question{font-size:11px}
+  .section-heading h1{font-size:clamp(27px,7.3vw,39px);line-height:1.5}.options .eyebrow{font-size:7px;letter-spacing:.1em}.options-intro{font-size:13px;line-height:1.9}
+  .options-margin{max-width:none}.folder-title{font-size:27px}.folder-teaser{font-size:12px}.folder-category{font-size:8px}.folder-tab{font-size:8px}
+  .folder-art .polaroid>.handwritten{font-size:12px;line-height:1.8}.league-note{font-size:13px;right:32px}.archive-note{font-size:13px;bottom:13px}
+  .ticket-stub>i{font-size:19px}.options-ending>p{font-size:24px;line-height:1.6}.options-ending>.text-link{font-size:11px;gap:10px}
+  .detail-copy h1{font-size:36px;line-height:1.5;overflow-wrap:normal;word-break:normal}.detail-copy .eyebrow{font-size:8px;line-height:1.9}.detail-subtitle{font-size:21px;line-height:1.7}
+  .detail-description{font-size:14px;line-height:1.9}.detail-photo-frame>.handwritten{font-size:15px;line-height:1.8}.source-links>span{font-size:15px}.source-links a{font-size:12px}
+  .gallery-heading h2{font-size:27px;line-height:1.6}.gallery-heading>.handwritten{font-size:13px}.photo-masonry figcaption{font-size:8px}
+  .detail-ending>.handwritten{font-size:14px}.detail-ending h2{font-size:32px;line-height:1.6}.detail-ending>.text-link{font-size:11px}
+  .question-card{padding:52px 21px 30px}.question-card h1{font-size:clamp(25px,7.2vw,43px);line-height:1.65;letter-spacing:-.035em}.question-card>.handwritten{font-size:13px;line-height:1.9;margin-bottom:23px}
+  .question-card>p{font-size:13px;line-height:2}.question-heart{margin-top:20px}.selected-plan-note{font-size:11px}.question-footnote{font-size:9px;line-height:1.8;display:block;padding:0 8px}
+  .response-choices label{font-size:12px;padding:11px;gap:10px}.message-label{font-size:11px}.response-form textarea{font-size:14px}.response-form .question-actions>.text-link{font-size:10px}.response-form .question-actions>.button{width:100%;min-width:0;font-size:13px}.question-sparkle{top:17%;right:12px;width:14px}.comfortable-note{font-size:11px;line-height:1.9}
+  .confirmation-title>.handwritten{font-size:14px;line-height:1.9}.confirmation-title h1{font-size:clamp(29px,8.5vw,50px);line-height:1.7}.confirmation-title>p:last-child{font-size:13px;line-height:2}
+  .confirmation-recap{grid-template-columns:1fr;padding:25px;gap:22px}.recap-photo{max-width:180px;width:100%;margin:auto}.recap-copy{text-align:center}.recap-copy h2{font-size:26px}.recap-copy>.handwritten{font-size:14px}.recap-copy>.text-link{font-size:11px}.recap-copy>.eyebrow{font-size:8px;line-height:1.8}.confirmation-actions>.handwritten{font-size:13px;text-align:center;line-height:1.8}.confirmation-actions>.button{font-size:11px;gap:12px}
+  .no-plan-note>p{font-size:17px;line-height:1.9}.no-plan-note{gap:12px}.site-footer>span:first-child,.site-footer>span:last-child{font-size:6px;letter-spacing:.03em}.site-footer>.handwritten{font-size:10px;line-height:1.8}.lightbox-bottom>p{font-size:10px}
+}
+@media(max-width:390px){.intro h1{font-size:41px}.folder-title{font-size:25px}.folder-teaser{font-size:11px}.detail-copy h1{font-size:32px}.question-card{padding-left:17px;padding-right:17px}.question-card>.handwritten{font-size:12px}.confirmation-recap{padding:22px}.options-ending>.text-link{font-size:10px}.site-footer>.handwritten{font-size:9px}}

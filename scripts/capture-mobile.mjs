@@ -49,7 +49,7 @@ try {
   await page.locator('.folder-grid').waitFor()
   await capture('options', 'Four little worlds', 'Your photos, waiting in their folders.')
   for (const [id, title, note] of [
-    ['chess', 'e4 Chess Bar', 'Rich orange & dark cocoa contrast'],
+    ['chess', 'e4 Chess Bar', 'Burnt orange & bolder white lettering'],
     ['theatre', 'Амьтны ферм жүжиг', 'Slate stage backdrops & red costume details'],
     ['exhibition', 'Социализмаар аялцгаая', 'Aged exhibit labels, ochre & rust'],
     ['basketball', 'Үндэсний дээд лиг', 'Midnight blue, warm white & lavender details'],

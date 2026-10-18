@@ -16,8 +16,8 @@ const artDirection = {
     teaser: 'Хэдэн нүүдэл. Хөөрхөн яриа. Хоёулаа.',
     introduction: 'e4 Chess Bar-д хамтдаа цаг өнгөрөөх үү? Дунд маань шатрын хөлөг, дэргэд минь чи. Дараагийн нүүдлээ яаралгүй бодож, тухтай ярилцъя.',
     annotation: 'your move, my dear ♡',
-    // Strong orange from the e4 branding, with dark cocoa for readable text.
-    palette: { paper: '#eeac76', ink: '#3b1e13', accent: '#5b260e', background: '#e9823f' }, coverIndex: 2,
+    // Burnt orange keeps white text above 5:1 contrast on the folder and page.
+    palette: { paper: '#b54d1c', ink: '#ffffff', accent: '#ffffff', background: '#b54d1c' }, coverIndex: 2,
     alts: ['Терракот өнгийн дэвсгэр дээрх e4 Chess Bar-ийн лого', 'Шатрын дүрс, e4 Chess Bar-ийн таних тэмдэгтэй улбар шар постер', 'Шатрын хөлөг, уух зүйлтэй e4 Chess Bar-ийн шатрын үдшийн зураг'],
     linkLabels: ['e4-ийн Instagram', 'e4-ийг сонирхоё', 'Бас нэг бяцхан танилцуулга'],
   },

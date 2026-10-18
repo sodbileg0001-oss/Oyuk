@@ -1,8 +1,16 @@
 /* The existing scrapbook compositions, tuned for the wider Mongolian letterforms. */
 .app{min-height:100svh;transition:background-color .25s ease}
-.view-chess{color:#3b1e13;--rose:#5b260e;--line:#9e4a2570}
-.view-chess .site-footer,.view-chess .site-header .restart-button,.view-chess .timing-note small{color:#4e2412}
-.view-chess :is(button,a):focus-visible{outline-color:#3b1e13}
+.view-chess{color:#fff;--rose:#fff;--line:#ffffff66;font-weight:600}
+.view-chess .site-footer,.view-chess .site-header .restart-button,.view-chess .timing-note small{color:#fff}
+.view-chess :is(button,a):focus-visible{outline-color:#fff}
+.view-chess h1,.view-chess h2,.view-chess .wordmark i,.recap-chess h2{font-weight:500}
+.view-chess .eyebrow,.view-chess .small-label,.folder-chess,.recap-chess{font-weight:600}
+.view-chess .button-themed{background:#57210b;color:#fff;border-color:#ffffff55}
+.view-chess .detail-photo-frame,.folder-chess .polaroid,.folder-chess .round-sticker{background:#933813;color:#fff}
+.folder-chess .folder-copy{border-top-color:#ffffff55}
+.folder-chess .folder-tab,.folder-chess .round-sticker{border-color:#ffffff70}
+.folder-chess .chess-piece,.recap-chess .recap-heart{color:#fff}
+.folder-chess .checker-strip{background-image:conic-gradient(#fff 25%,transparent 0 50%,#fff 0 75%,transparent 0);opacity:.15}
 .view-basketball{color:#f5f1e7;--rose:#b8c7ff;--line:#465679}
 .view-basketball .site-footer,.view-basketball .site-header .restart-button,.view-basketball .timing-note small{color:#bdcbe6}
 .view-basketball :is(button,a):focus-visible{outline-color:#b8c7ff}

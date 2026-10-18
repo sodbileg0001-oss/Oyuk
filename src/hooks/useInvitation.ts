@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { isDateId, permittedResponses, type DateId, type InvitationResponse } from '../../shared/date-catalog'
+import { isCalendarDay } from '../../shared/preferred-day'
 
-export type Receipt = { response: InvitationResponse; selectedDateId: DateId | null; submissionId: string }
+export type Receipt = { response: InvitationResponse; selectedDateId: DateId | null; preferredDay: string | null; submissionId: string }
 type Memory = { opened: boolean; selected: DateId | null; receipt: Receipt | null; visited: DateId[] }
 const empty: Memory = { opened: false, selected: null, receipt: null, visited: [] }
 const key = 'a-little-letter:v2'
@@ -12,7 +13,7 @@ function read(): Memory {
     if (!saved || typeof saved !== 'object') return empty
     const receipt = saved.receipt
     const validReceipt = receipt && permittedResponses.includes(receipt.response) && typeof receipt.submissionId === 'string' && (receipt.selectedDateId === null || isDateId(receipt.selectedDateId))
-    return { opened: saved.opened === true, selected: isDateId(saved.selected) ? saved.selected : null, receipt: validReceipt ? receipt : null, visited: Array.isArray(saved.visited) ? [...new Set<DateId>(saved.visited.filter(isDateId))] : [] }
+    return { opened: saved.opened === true, selected: isDateId(saved.selected) ? saved.selected : null, receipt: validReceipt ? { ...receipt, preferredDay: receipt.response === 'yes' && isCalendarDay(receipt.preferredDay) ? receipt.preferredDay : null } : null, visited: Array.isArray(saved.visited) ? [...new Set<DateId>(saved.visited.filter(isDateId))] : [] }
   } catch { return empty }
 }
 

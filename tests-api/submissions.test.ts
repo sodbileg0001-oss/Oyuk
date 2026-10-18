@@ -157,3 +157,57 @@ test('provider failures are controlled, private, and never automatically retried
     }, { fetch: async () => { calls++; return Response.json({ error: 'private provider detail' }, { status }) } })
   }
 })
+
+test('the preferred calendar day is authoritative, signed, and included in both email formats', async () => {
+  let email: any
+  const input = { ...answer, preferredDay: '2026-10-24' }
+  await fixture(async call => {
+    const prepared = await call({ ...input, intent: 'prepare' })
+    assert.equal(prepared.status, 200)
+    const submit = { ...input, intent: 'submit', submissionToken: prepared.body.submissionToken }
+    assert.equal((await call({ ...submit, preferredDay: '2026-10-25' })).status, 400)
+    assert.equal((await call(submit)).status, 200)
+    assert.ok(email.text.includes('Санал болгосон өдөр:'))
+    assert.ok(email.text.includes('2026-10-24')); assert.ok(email.html.includes('2026-10-24'))
+    assert.ok(email.text.includes('Бямба')); assert.ok(email.html.includes('Бямба'))
+    assert.deepEqual(email.to, [configured.NOTIFICATION_EMAIL])
+  }, { now: () => Date.UTC(2026, 9, 18), fetch: async (_, init) => { email = JSON.parse(String(init?.body)); return accepted() } })
+})
+
+test('invalid calendar days and days attached to non-acceptance answers are rejected without sending', async () => {
+  let sends = 0
+  await fixture(async call => {
+    for (const preferredDay of ['2026-02-30', '2027-02-29', '2026-13-01', '24/10/2026', '<script>alert(1)</script>', {}, false, '']) {
+      assert.equal((await call({ ...answer, preferredDay, intent: 'prepare' })).status, 400)
+    }
+    for (const response of ['maybe', 'no']) assert.equal((await call({ ...answer, response, preferredDay: '2026-10-24', intent: 'prepare' })).status, 400)
+    assert.equal(sends, 0)
+  }, { fetch: async () => { sends++; return accepted() } })
+})
+
+test('calendar validation uses Ulaanbaatar today and preserves identical retries across local midnight', async () => {
+  let now = Date.UTC(2026, 9, 18, 15, 59)
+  const sent: { body: unknown; key: string | null }[] = []
+  const input = { ...answer, preferredDay: '2026-10-18' }
+  await fixture(async call => {
+    const prepared = await call({ ...input, intent: 'prepare' })
+    assert.equal(prepared.status, 200)
+    const submit = { ...input, intent: 'submit', submissionToken: prepared.body.submissionToken }
+    assert.equal((await call(submit)).status, 200)
+    now += 120_000 // It is now October 19 in Ulaanbaatar, still October 18 UTC.
+    const past = await call({ ...input, intent: 'prepare' })
+    assert.equal(past.status, 422); assert.equal(past.body.code, 'DAY_IN_THE_PAST')
+    assert.equal((await call(submit)).status, 200)
+    assert.deepEqual(sent[0], sent[1])
+  }, { now: () => now, fetch: async (_, init) => { sent.push({ body: init?.body, key: new Headers(init?.headers).get('Idempotency-Key') }); return accepted() } })
+})
+
+test('a flexible day remains optional and the email says it has not been chosen', async () => {
+  let email: any
+  await fixture(async call => {
+    const prepared = await call({ ...answer, preferredDay: null, intent: 'prepare' })
+    assert.equal(prepared.status, 200)
+    assert.equal((await call({ ...answer, preferredDay: null, intent: 'submit', submissionToken: prepared.body.submissionToken })).status, 200)
+    assert.ok(email.text.includes('Өдөр сонгоогүй.')); assert.ok(email.html.includes('Өдөр сонгоогүй.'))
+  }, { fetch: async (_, init) => { email = JSON.parse(String(init?.body)); return accepted() } })
+})

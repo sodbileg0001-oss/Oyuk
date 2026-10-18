@@ -2,6 +2,16 @@
 
 An existing React + Vite + TypeScript romantic scrapbook, now with Mongolian copy, self-hosted Noto fonts that include **Ү ү Ө ө**, four photo-inspired palettes, and a server-side Resend notification flow. Original source folders, photos, and notes remain untouched.
 
+The final reply now offers an optional **calendar day**, a Saturday shortcut, and a flexible “decide together later” option. The day is a preference, not a booking or a claim that an event is available. It is included in both email formats and saved in the confirmation receipt. Dates are checked against today's date in Ulaanbaatar; pending retries keep their original day even across midnight. Choosing “maybe” or “no” clears the day. A small **surprise me** button opens a randomly chosen unexplored folder without selecting a plan or sending anything.
+
+## Free email setup
+
+[Resend's Free plan](https://resend.com/pricing) currently includes **3,000 transactional emails per month, up to 100 per day** (checked October 18, 2026). This project uses the transactional send endpoint, with no paid add-ons, database, or subscription required for that allowance. Stay on the Free plan; this code does not configure paid upgrades.
+
+Your requested recipient is set in this computer's ignored `.env.local`. To receive notifications, you still need to supply `RESEND_API_KEY` and `FROM_EMAIL`, and set all four server variables in Vercel. The local recipient setting is deliberately not pushed to GitHub or embedded in the frontend. An email address alone cannot enable delivery.
+
+For a **no-domain test**, Resend allows `onboarding@resend.dev` to send only to the email address associated with your Resend account. Register with your notification Gmail address if you want to test that route. This sender is for testing; normal production sending uses a verified domain you own. Your Gmail can be the recipient, but cannot serve as a verified sending domain. Domain registration may cost money if you do not already own one. See [test-sender restrictions](https://resend.com/docs/knowledge-base/403-error-resend-dev-domain) and [verified domains](https://resend.com/docs/dashboard/domains/introduction). No account, domain purchase, or paid service has been created for you.
+
 ## Start locally
 
 Use Node.js 24 and run these commands inside `date-website`:
@@ -60,7 +70,7 @@ Vercel prints the actual URL after deployment; it cannot be known until your acc
 
 ## The actual submission flow
 
-Opening the letter, browsing folders, or selecting a date sends **no email**. A date-selection button takes the visitor to the final question. That form supports `yes`, `maybe`, and `no`, plus an optional message of at most 1,000 JavaScript characters. Each response has an accurate, respectful confirmation.
+Opening the letter, browsing folders, picking a calendar day, or selecting a date sends **no email**. A date-selection button takes the visitor to the final question. That form supports `yes`, `maybe`, and `no`, plus an optional message of at most 1,000 JavaScript characters. A `yes` can include an optional `preferredDay` in real `YYYY-MM-DD` format; omitted/null means flexible. Past days are rejected during preparation with HTTP 422, using the Ulaanbaatar calendar. A day attached to `maybe` or `no` is rejected. Each response has an accurate, respectful confirmation.
 
 Only an explicit click on **Хариугаа илгээх** starts these two POST requests to the same endpoint:
 
@@ -69,6 +79,7 @@ Only an explicit click on **Хариугаа илгээх** starts these two POS
   "intent": "prepare",
   "response": "yes",
   "selectedDateId": "chess",
+  "preferredDay": null,
   "message": "Хамтдаа явъя ♡",
   "website": ""
 }
@@ -102,7 +113,7 @@ Only a successful provider response with an email ID yields `200 { ok: true, sta
 - The application does **not** claim exactly-once delivery. A deliberate new submission, a new browser session, cleared storage, or restarting a completed experience can create a new notification. There's no durable application database recording every visitor's answer.
 - Each warm server instance enforces **12 API requests per client per 10 minutes** and **60 API requests total per hour**; a normal answer uses two. It stores only short-lived hashed client identifiers. These are best-effort limits and do not aggregate across Vercel instances or cold starts. Same-origin checks, JSON-only requests, a honeypot, signed answer-bound tickets, and an **8 KiB** request cap provide additional basic safeguards. Scripted attackers can still request new tickets.
 - For wider public sharing or observed abuse, add a **Vercel Firewall** rate-limit rule on `/api/submit-response` (subject to your plan), or a shared Redis limiter/CAPTCHA. Those provide stronger distributed protection but require extra configuration/services; none is required for this personal invitation. No extra database was introduced.
-- The server uses one provider request per attempt, a 12-second timeout, and no automatic email retries. Provider internals, stack traces, and credentials are never sent to the browser. Responses are non-cacheable. Status codes include 400, 403, 405, 410, 413, 415, 429, 502, and 503 as appropriate.
+- The server uses one provider request per attempt, a 12-second timeout, and no automatic email retries. Provider internals, stack traces, and credentials are never sent to the browser. Responses are non-cacheable. Status codes include 400, 403, 405, 410, 413, 415, 422, 429, 502, and 503 as appropriate.
 
 ## Routing, content, and design
 
@@ -111,13 +122,15 @@ Navigation retains the existing hash URLs: `/#options`, `/#chess`, `/#theatre`, 
 | Original folder | Theme | Original timing | Photos |
 | --- | --- | --- | --- |
 | `e4 chess bar` | Warm terracotta chess journal | Anytime | 3 |
-| `Амьтны ферм жүжиг` | Theatre blue and plum ticket details | Since October 30th | 8 |
-| `Социализмаар аялцгаая` | Archival parchment and amber postcards | Until November 19th | 7 |
-| `Үндэсний дээд лиг` | Courtside teal and navy schedule | Anytime | 1 |
+| `Амьтны ферм жүжиг` | Slate stage blue and red costume details | Since October 30th | 8 |
+| `Социализмаар аялцгаая` | Aged parchment, ochre rugs, rust furniture | Until November 19th | 7 |
+| `Үндэсний дээд лиг` | Indigo and navy from the schedule | Anytime | 1 |
 
 `scripts/sync-content.mjs` reads each original note and discovers images, copying them to `public/dates/<id>/` with original filenames. It preserves the full source notes in `src/data/source-manifest.json`. It runs before dev/build. When the sibling folders aren't present in a repository checkout, it validates and uses the checked-in manifest/assets. All 19 images ship in `dist/dates/`. The source timing has no year; no year, price, exact event session, venue address, or itinerary is invented.
 
 The updated main palette is warm ivory and mulberry. `src/styles/mongolian.css` adapts the existing scrapbook typography and compositions; `src/styles/fonts.css` includes explicit Latin, Cyrillic, and extended-Cyrillic Unicode ranges. Self-hosted Noto Serif/Sans glyphs render Ү/Ө in headings, body text, and italic notes. `scripts/generate-fonts.mjs` regenerates this stylesheet after font dependency changes.
+
+Each full-page background is a lighter paper tint of colors sampled from that folder's actual photographs. Palette values live in `src/data/dates.ts` and also style folders and confirmation recaps. Basketball now follows the schedule's indigo rather than teal. Photographs retain accessible alt text without visible picture descriptions.
 
 Main implementation files: `src/components/`, `src/hooks/useInvitation.ts`, `src/hooks/useSubmission.ts`, `src/data/dates.ts`, `shared/date-catalog.ts`, `api/submit-response.ts`, `server/submissions.ts`, `server/guards.ts`, `server/email.ts`, `server/local-api.ts`, `vite.config.ts`, and `vercel.json`.
 
@@ -140,8 +153,8 @@ npm.cmd run test:api
 npm.cmd test
 ```
 
-The API tests run a real local HTTP server with a **stubbed Resend provider**, covering permitted/rejected answers, authoritative dates, message escaping/limits, malformed/oversized bodies, methods, origin checks, honeypots, missing configuration, rate limits, signed-ticket tampering/expiry, stable cross-instance retries, and private provider failures. They never contact Resend.
+The API tests run a real local HTTP server with a **stubbed Resend provider**, covering permitted/rejected answers, authoritative date ideas, calendar-day validation, email day formatting, message escaping/limits, malformed/oversized bodies, methods, origin checks, honeypots, missing configuration, rate limits, signed-ticket tampering/expiry, stable cross-instance and midnight retries, and private provider failures. They never contact Resend.
 
-Browser tests use installed Google Chrome and exercise the four galleries, keyboard lightbox controls, explicit submission, failure/retry, pending-state refresh, receipt refresh, response accuracy, hash deep links, extended-Cyrillic fonts, mobile restart, and overflow at 360, 390, 768, and 1440 pixels. Successful email responses are mocked; a separate browser test exercises the real local endpoint with missing configuration.
+Browser tests use installed Google Chrome and exercise the four galleries, keyboard lightbox controls, explicit submission, choosing/clearing a day, surprise discovery, failure/retry, pending-state refresh, receipt refresh, response accuracy, hash deep links, extended-Cyrillic fonts, mobile restart, and overflow at 360, 390, 768, and 1440 pixels. Successful email responses are mocked; a separate browser test exercises the real local endpoint with missing configuration.
 
 **Requires your later setup:** authenticated Vercel build/deployment, the final public HTTPS URL, live Function routing, verified sending domain, real Resend acceptance, and actual inbox delivery. No real email was sent and no Vercel production deployment was performed during implementation. Complete step 11 before sharing the URL.

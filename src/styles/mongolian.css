@@ -67,6 +67,29 @@
 .recap-copy>p{font-size:12px}.confirmation-actions>.handwritten{font-size:16px}
 .no-plan-note>p{font-size:23px;line-height:1.8}.site-footer>.handwritten{font-size:13px;line-height:1.8}
 .lightbox-bottom>p{font-size:12px;line-height:1.8}
+.surprise-row{margin:-39px 0 55px;display:flex;justify-content:flex-end}
+.surprise-button{min-height:44px;display:flex;align-items:center;gap:10px;font-size:11px;color:var(--rose);border-bottom:1px dashed #b58c9a;padding:8px 0}
+.surprise-button>span:first-child{font-size:21px}.surprise-button>span:last-child{font-family:var(--serif);font-size:13px;font-style:italic;margin-left:4px}
+.day-picker{padding:21px 18px 17px;margin:0 0 25px;border:1px solid #dbc9cd;background:#f5ede9;position:relative}
+.day-picker::before{content:'';position:absolute;top:-8px;left:calc(50% - 27px);width:54px;height:15px;background:#d7c5a980;transform:rotate(-4deg)}
+.day-picker-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.day-picker-heading label{font-size:12px;font-weight:500}.day-picker-heading label>span{font-size:10px;font-weight:400;margin-left:8px;color:#74616f}
+.day-picker-note{font:italic 12px var(--serif);color:#854658}
+.day-picker input{display:block;box-sizing:border-box;min-width:0;width:100%;max-width:100%;min-height:48px;padding:10px 12px;background:#fffcf8;border:1px solid #c9b8c1;border-radius:2px;color:#493b45;font:16px 'Noto Sans',Arial,sans-serif;color-scheme:light}
+.day-picker input::-webkit-date-and-time-value{text-align:left}.day-picker input:focus-visible{outline:2px solid #854658;outline-offset:3px}
+.day-picker input:disabled{opacity:.7}
+.day-shortcuts{display:flex;flex-wrap:wrap;gap:3px 16px;margin-top:5px}.day-shortcuts button{min-height:44px;font-size:11px;color:#784452;padding:4px 0;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#c9a5b0}
+.day-shortcuts button[aria-pressed=true]{text-decoration:none;color:#65555d}
+.day-preview{font-size:12px;line-height:1.8;margin:8px 0 5px;font-weight:500}.day-preview>span{color:#854658;margin-right:3px}
+.day-help{font-size:10px;color:#74616f;line-height:1.9}
+.confirmed-day{max-width:670px;margin:32px auto 0;padding:22px 18px;border-top:1px dashed #c9aeb8;border-bottom:1px dashed #c9aeb8}
+.confirmed-day>.eyebrow{font-size:9px;color:#854658}.confirmed-day>p{display:flex;gap:10px;justify-content:center;align-items:center;font:20px/1.8 var(--serif);margin:8px 0}
+.confirmed-day svg{width:20px;flex-shrink:0;color:#854658}.confirmed-day>span:last-child{font-size:11px;line-height:1.8;color:#74616f}
+.folder-basketball .court-lines,.folder-basketball .court-lines::before,.folder-basketball .court-lines::after{border-color:#3c439036}.folder-basketball .basketball-doodle{color:#3c4390}
+.ticket-stub{background:var(--accent)}.theatre-sparkle{color:var(--accent)}
+.detail-theatre .detail-photo-frame{background:var(--ink)}.detail-theatre .detail-cover::before{background:var(--paper);color:var(--ink)}
+.detail-basketball .detail-cover{background:var(--paper);outline-color:#3c439035}.gallery-basketball .gallery-photo{border-color:var(--paper)}
+@media(max-width:760px){.surprise-row{justify-content:flex-start;margin:-43px 0 55px}.surprise-button{font-size:11px}.day-picker{padding:20px 12px 15px}.day-picker-heading{display:block}.day-picker-note{display:block;margin-top:6px}.day-picker input{font-size:16px}.day-shortcuts{gap:4px 14px}.day-preview{font-size:12px}.confirmed-day>p{font-size:17px;align-items:flex-start}.confirmed-day svg{margin-top:6px}.confirmed-day>span:last-child{font-size:10px}}
 @media(max-width:1050px){.section-heading h1{font-size:38px}.options-margin{max-width:180px}.folder-title{font-size:25px}.detail-copy h1{font-size:36px}.gallery-heading h2{font-size:29px}.intro h1{font-size:49px}.intro-ps{font-size:12px}.envelope-annotation{font-size:15px}}
 @media(max-width:760px){
   .intro h1{font-size:45px;line-height:1.25}.intro .eyebrow{font-size:9px}.intro-description{font-size:13px;line-height:1.9}.intro-ps{font-size:12px;line-height:1.8;margin-left:0}

@@ -49,10 +49,10 @@ try {
   await page.locator('.folder-grid').waitFor()
   await capture('options', 'Four little worlds', 'Your photos, waiting in their folders.')
   for (const [id, title, note] of [
-    ['chess', 'e4 Chess Bar', 'Warm terracotta & peach paper'],
-    ['theatre', 'Амьтны ферм жүжиг', 'Theatre blue & plum details'],
-    ['exhibition', 'Социализмаар аялцгаая', 'Soft parchment & archival amber'],
-    ['basketball', 'Үндэсний дээд лиг', 'Courtside teal & a little navy'],
+    ['chess', 'e4 Chess Bar', 'Rust-orange branding, softened to terracotta paper'],
+    ['theatre', 'Амьтны ферм жүжиг', 'Slate stage backdrops & red costume details'],
+    ['exhibition', 'Социализмаар аялцгаая', 'Aged exhibit labels, ochre & rust'],
+    ['basketball', 'Үндэсний дээд лиг', 'Indigo from the uploaded league schedule'],
   ]) {
     await page.getByRole('button', { name: `${title} — дэлгэрэнгүй`, exact: false }).click()
     await page.locator(`.detail-${id}`).waitFor()
@@ -61,6 +61,7 @@ try {
   }
   await page.getByRole('button', { name: 'нэг асуулт', exact: false }).click()
   await page.locator('.question-card').waitFor()
+  await page.getByRole('button', { name: 'Бямба гараг?', exact: true }).click()
   await settle(page)
   await page.screenshot({ path: path.join(output, 'mobile-question-full.png'), fullPage: true })
 

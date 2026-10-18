@@ -2,8 +2,9 @@ import type { DateIdea } from '../data/dates'
 import type { InvitationResponse } from '../../shared/date-catalog'
 import { Arrow, Confetti, Flower, Heart } from './Illustrations'
 import { Photo } from './Photo'
+import { formatPreferredDay } from '../../shared/preferred-day'
 
-export function ConfirmationScreen({ selected, response, onBack, onDetail }: { selected?: DateIdea; response: InvitationResponse; onBack: () => void; onDetail: () => void }) {
+export function ConfirmationScreen({ selected, response, preferredDay, onBack, onDetail }: { selected?: DateIdea; response: InvitationResponse; preferredDay: string | null; onBack: () => void; onDetail: () => void }) {
   const yes = response === 'yes'
   const headline = yes ? <>Тэгвэл…<br /><em>болзоо шүү!</em></> : response === 'maybe' ? <>Яарах зүйлгүй.<br /><em>Бодоод үзээрэй.</em></> : <>Ойлголоо.<br /><em>Баярлалаа.</em></>
   return <section className="confirmation page-enter" aria-labelledby="confirmation-heading">
@@ -15,11 +16,12 @@ export function ConfirmationScreen({ selected, response, onBack, onDetail }: { s
       <h1 id="confirmation-heading" tabIndex={-1}>{headline}</h1>
       <p>{yes ? <>Намайг ямар их баярлуулсныг чи мэдэхгүй дээ.<br />Хамтдаа гоё дурсамж бүтээе.</> : response === 'maybe' ? 'Хэрэгтэй хугацаагаа аваарай. Чиний хариуг хүндэтгэнэ ээ.' : 'Үнэнээ хэлсэнд баярлалаа. Чамд сайхан бүхнийг хүсье.'}</p>
     </div>
-    {selected ? <div className={`confirmation-recap recap-${selected.id}`}>
+    {selected ? <div className={`confirmation-recap recap-${selected.id}`} style={{ backgroundColor: selected.palette.paper, color: selected.palette.ink, borderColor: `${selected.palette.accent}55` }}>
       <div className="recap-photo"><Photo photo={selected.cover} eager /></div>
       <div className="recap-copy"><span className="eyebrow">{yes ? 'БИДНИЙ БЯЦХАН ТӨЛӨВЛӨГӨӨ' : 'СОНИРХСОН БЯЦХАН САНАА'} · {selected.number}</span><h2 lang={selected.id === 'chess' ? 'en' : 'mn'}>{selected.title}</h2><p>{selected.timing}</p><span className="handwritten">{yes ? 'яг өдрөө хамтдаа тохиръё.' : 'хариунд чинь энэ санааг тэмдэглэлээ.'}</span><button className="text-link" onClick={onDetail}>Санаагаа дахин харах <Arrow /></button></div>
       <Heart className="recap-heart" />
     </div> : yes && <div className="no-plan-note"><Flower /><p>Хэнтэй гэдэг нь шийдэгдлээ.<br /><em>Хаашаа гэдгээ хамтдаа сонгоё.</em></p></div>}
+    {yes && preferredDay && <div className="confirmed-day"><span className="eyebrow" lang="en">A LITTLE DAY FOR US</span><p><Heart /><time dateTime={preferredDay}>{formatPreferredDay(preferredDay)}</time></p><span>Санал болгосон өдөр · Яг цагаа, хуваариа хамтдаа тохиръё.</span></div>}
     <div className="confirmation-actions"><button className="button button-primary" onClick={onBack}>Бяцхан санаануудыг дахин харах <Arrow /></button>{yes && <span className="handwritten">хүлээх нэг хөөрхөн зүйлтэй болчихлоо ♡</span>}</div>
   </section>
 }

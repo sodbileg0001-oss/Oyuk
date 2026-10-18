@@ -1,6 +1,7 @@
 import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { isDateId, MAX_MESSAGE_LENGTH, permittedResponses, type InvitationResponse } from '../shared/date-catalog.js'
+import { isCalendarDay, todayInUlaanbaatar } from '../shared/preferred-day.js'
 import { createEmail, type Answer } from './email.js'
 import { MAX_BODY_BYTES, RequestError, TICKET_LIFETIME_MS, WarmRateLimiter, readConfig } from './guards.js'
 
@@ -38,18 +39,20 @@ async function readPayload(request: NodeRequest): Promise<unknown> {
 function validate(value: unknown): { answer: Answer; intent: 'prepare' | 'submit'; token?: string } {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw malformed()
   const body = value as Record<string, unknown>
-  const allowed = ['intent', 'response', 'selectedDateId', 'selectedDateTitle', 'message', 'website', 'submissionToken']
+  const allowed = ['intent', 'response', 'selectedDateId', 'selectedDateTitle', 'preferredDay', 'message', 'website', 'submissionToken']
   if (Object.keys(body).some(key => !allowed.includes(key))) throw malformed()
   if (body.intent !== 'prepare' && body.intent !== 'submit') throw malformed()
   if (!permittedResponses.includes(body.response as InvitationResponse)) throw malformed()
   const selectedDateId = body.selectedDateId ?? null
   if (selectedDateId !== null && !isDateId(selectedDateId)) throw malformed()
   if (body.selectedDateTitle !== undefined && (typeof body.selectedDateTitle !== 'string' || body.selectedDateTitle.length > 160)) throw malformed()
+  const preferredDay = body.preferredDay ?? null
+  if (preferredDay !== null && (!isCalendarDay(preferredDay) || body.response !== 'yes')) throw malformed()
   if (body.message !== undefined && (typeof body.message !== 'string' || body.message.length > MAX_MESSAGE_LENGTH || /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/.test(body.message))) throw malformed()
   if (body.website !== undefined && body.website !== '') throw malformed()
   if (body.intent === 'prepare' && body.submissionToken !== undefined) throw malformed()
   if (body.intent === 'submit' && (typeof body.submissionToken !== 'string' || body.submissionToken.length > 2048)) throw malformed()
-  return { intent: body.intent, token: body.submissionToken as string | undefined, answer: { response: body.response as InvitationResponse, selectedDateId: selectedDateId as Answer['selectedDateId'], message: (body.message as string | undefined ?? '').trim().replace(/\r\n/g, '\n') } }
+  return { intent: body.intent, token: body.submissionToken as string | undefined, answer: { response: body.response as InvitationResponse, selectedDateId: selectedDateId as Answer['selectedDateId'], message: (body.message as string | undefined ?? '').trim().replace(/\r\n/g, '\n'), ...(preferredDay ? { preferredDay: preferredDay as string } : {}) } }
 }
 
 function verifyTicket(token: string, secret: string, answer: Answer, now: number): Ticket {
@@ -85,6 +88,9 @@ export function createSubmissionHandler(dependencies: Dependencies = {}) {
       let payload: unknown
       try { payload = await readPayload(request) } catch (error) { if (error instanceof RequestError) throw error; throw malformed() }
       const { answer, intent, token } = validate(payload)
+      // Validate past days only when preparing: retrying a signed answer after midnight
+      // must keep exactly the original payload and provider idempotency key.
+      if (intent === 'prepare' && answer.preferredDay && answer.preferredDay < todayInUlaanbaatar(now)) throw new RequestError(422, 'DAY_IN_THE_PAST', 'Энэ өдөр өнгөрсөн байна. Өөр өдөр сонгох эсвэл өдрөө дараа тохирч болно. ♡')
       const config = readConfig(env)
       if ((request.headers.origin && request.headers.origin !== config.siteUrl) || request.headers['sec-fetch-site'] === 'cross-site') throw new RequestError(403, 'ORIGIN_NOT_ALLOWED', 'Хариугаа урилгын сайтаас илгээгээрэй.')
 

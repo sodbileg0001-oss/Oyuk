@@ -16,7 +16,8 @@ const artDirection = {
     teaser: 'Хэдэн нүүдэл. Хөөрхөн яриа. Хоёулаа.',
     introduction: 'e4 Chess Bar-д хамтдаа цаг өнгөрөөх үү? Дунд маань шатрын хөлөг, дэргэд минь чи. Дараагийн нүүдлээ яаралгүй бодож, тухтай ярилцъя.',
     annotation: 'your move, my dear ♡',
-    palette: { paper: '#efd8c1', ink: '#603b2b', accent: '#964524', background: '#f4e6d8' }, coverIndex: 2,
+    // Warm paper tints of the rust/orange e4 branding (#b03010, #905030).
+    palette: { paper: '#e9bb9b', ink: '#562b1e', accent: '#903010', background: '#f0d6c4' }, coverIndex: 2,
     alts: ['Терракот өнгийн дэвсгэр дээрх e4 Chess Bar-ийн лого', 'Шатрын дүрс, e4 Chess Bar-ийн таних тэмдэгтэй улбар шар постер', 'Шатрын хөлөг, уух зүйлтэй e4 Chess Bar-ийн шатрын үдшийн зураг'],
     linkLabels: ['e4-ийн Instagram', 'e4-ийг сонирхоё', 'Бас нэг бяцхан танилцуулга'],
   },
@@ -25,7 +26,8 @@ const artDirection = {
     teaser: 'Гэрэл бүдгэрч, түүх эхэлнэ.',
     introduction: '“Амьтны ферм” жүжгийг хамт үзье. Зэрэгцэж суугаад нэг түүхийг хуваалцаж, дараа нь сэтгэгдлээ ярилцах гоё байх, тийм үү?',
     annotation: 'save me the seat next to you',
-    palette: { paper: '#d8e0e6', ink: '#273c51', accent: '#713d51', background: '#e8edf2' }, coverIndex: 2,
+    // Slate stage backdrops (#303050, #305050) and red costume details.
+    palette: { paper: '#c6cfd8', ink: '#2f354b', accent: '#713b3e', background: '#dce2e8' }, coverIndex: 2,
     alts: ['Өнгөлөг нөмрөгтэй дүрийг харуулсан Амьтны ферм жүжгийн постер', 'Модон сандал дээр суусан дүртэй Амьтны ферм жүжгийн постер', 'Жүжгийн нэр болон дүрүүдийг харуулсан Амьтны фермийн хамт олны постер', 'Цайвар даашинзтай дүр бүхий Амьтны ферм жүжгийн постер', 'Давхарласан чемодан үүрсэн дүртэй Амьтны ферм жүжгийн постер', 'Ягаан сандал дээр суусан дүртэй Амьтны ферм жүжгийн постер', 'Ном тэвэрсэн дүртэй Амьтны ферм жүжгийн постер', 'Сонин уншиж буй хонин дүртэй Амьтны ферм жүжгийн постер'], linkLabels: [],
   },
   exhibition: {
@@ -33,7 +35,8 @@ const artDirection = {
     teaser: 'Хуучны түүх. Шинэхэн дурсамж.',
     introduction: '“Социализмаар аялцгаая” үзэсгэлэнгээр хамтдаа алхъя. Өөр нэгэн үеийн эд зүйлсийг сонирхож, юу нь бидний анхаарлыг татахыг үзье.',
     annotation: 'a little time travel, together',
-    palette: { paper: '#eadfbc', ink: '#584b2e', accent: '#84502e', background: '#f4eedc' }, coverIndex: 1,
+    // Aged exhibit labels (#d0d0b0, #f0f0d0), ochre rug and painted furniture.
+    palette: { paper: '#dfd1a2', ink: '#504527', accent: '#914326', background: '#eee4c6' }, coverIndex: 1,
     alts: ['Социализмын үеийн амттан, савласан ундааны үзмэр', 'Хээтэй хивс, зурагт, гитар болон ахуйн эд зүйлтэй хуучны өрөөний үзмэр', 'Социализмаар аялцгаая үзэсгэлэнгийн танилцуулга постер', 'Уран хийцтэй төмөр эдлэл болон түүхэн эд зүйлсийн үзмэр', 'Хуучны хөрөгтэй товхимол, мөнгөн тэмдэгтийн үзмэр', 'Өнгөлөг авдар, тавилга болон хуучны ахуйн эд зүйлс бүхий монгол гэрийн үзмэр', 'Жинлүүр, савласан хүнстэй хуучны дэлгүүрийн үзмэр'], linkLabels: ['Үзэсгэлэнгийн тухай'],
   },
   basketball: {
@@ -41,7 +44,8 @@ const artDirection = {
     teaser: 'Гоё тоглолт. Сайхан хань. Хоёулаа.',
     introduction: 'Үндэсний дээд лигийн сагсан бөмбөгийн тоглолтыг хамт үзэх үү? Хамтдаа догдолж, багаа дэмжээд, нэг оройг хөгжилтэй өнгөрөөе.',
     annotation: 'you + me, same team ♡',
-    palette: { paper: '#d5e5e5', ink: '#1e444c', accent: '#94502c', background: '#e3eff0' }, coverIndex: 0,
+    // Indigo schedule background (#101030, #101070, #101090), softened for paper.
+    palette: { paper: '#c5cbea', ink: '#25274e', accent: '#3c4390', background: '#e0e3f4' }, coverIndex: 0,
     alts: ['Үндэсний дээд лигийн багуудын лого, тоглолтуудын хуваарь бүхий хөх дэвсгэртэй зураг'], linkLabels: ['Лигийн Facebook хуудас'],
   },
 } satisfies Record<DateId, object>

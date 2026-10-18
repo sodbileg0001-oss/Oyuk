@@ -95,6 +95,8 @@
 .question-footnote{font-size:10px;letter-spacing:0}
 .confirmation-title>.handwritten{font-size:19px;line-height:1.8}.confirmation-title h1{font-size:65px;line-height:1.4}
 .confirmation-title>p:last-child{font-size:14px;line-height:2}.confirmation-doodle>svg{width:44px;height:55px}
+.confirmation-title>.confirmation-status{display:flex;align-items:center;justify-content:center;gap:7px;width:fit-content;max-width:100%;margin:0 auto 16px;padding:7px 12px;border:1px solid #d9c7ce;background:#f1e7ea;color:#754052;letter-spacing:.07em;line-height:1.8;font-weight:500}
+.confirmation-status>svg{flex-shrink:0}
 .recap-copy h2{font-size:27px;line-height:1.5}.recap-copy>.eyebrow{font-size:7px;letter-spacing:.06em}
 .recap-copy>.handwritten{font-size:14px;line-height:1.8}.recap-copy>.text-link{font-size:11px}
 .recap-copy>p{font-size:12px}.confirmation-actions>.handwritten{font-size:16px}

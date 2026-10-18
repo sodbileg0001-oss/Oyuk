@@ -49,10 +49,10 @@ try {
   await page.locator('.folder-grid').waitFor()
   await capture('options', 'Four little worlds', 'Your photos, waiting in their folders.')
   for (const [id, title, note] of [
-    ['chess', 'e4 Chess Bar', 'Rust-orange branding, softened to terracotta paper'],
+    ['chess', 'e4 Chess Bar', 'Rich orange & dark cocoa contrast'],
     ['theatre', 'Амьтны ферм жүжиг', 'Slate stage backdrops & red costume details'],
     ['exhibition', 'Социализмаар аялцгаая', 'Aged exhibit labels, ochre & rust'],
-    ['basketball', 'Үндэсний дээд лиг', 'Indigo from the uploaded league schedule'],
+    ['basketball', 'Үндэсний дээд лиг', 'Midnight blue, warm white & lavender details'],
   ]) {
     await page.getByRole('button', { name: `${title} — дэлгэрэнгүй`, exact: false }).click()
     await page.locator(`.detail-${id}`).waitFor()

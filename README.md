@@ -130,7 +130,7 @@ Navigation retains the existing hash URLs: `/#options`, `/#chess`, `/#theatre`, 
 
 The updated main palette is warm ivory and mulberry. `src/styles/mongolian.css` adapts the existing scrapbook typography and compositions; `src/styles/fonts.css` includes explicit Latin, Cyrillic, and extended-Cyrillic Unicode ranges. Self-hosted Noto Serif/Sans glyphs render Ү/Ө in headings, body text, and italic notes. `scripts/generate-fonts.mjs` regenerates this stylesheet after font dependency changes.
 
-Each full-page background is a lighter paper tint of colors sampled from that folder's actual photographs. Palette values live in `src/data/dates.ts` and also style folders and confirmation recaps. Basketball now follows the schedule's indigo rather than teal. Photographs retain accessible alt text without visible picture descriptions.
+Full-page colors follow each folder's photographs: e4 uses a strong orange background with dark cocoa text; basketball uses midnight blue with warm white text and lavender details. Theatre and exhibition keep their slate and parchment backgrounds. Palette values live in `src/data/dates.ts`; optional `pageInk`/`pageAccent` colors keep dark pages readable while folder cards and photo frames retain their own paper colors. Photographs retain accessible alt text without visible picture descriptions.
 
 Main implementation files: `src/components/`, `src/hooks/useInvitation.ts`, `src/hooks/useSubmission.ts`, `src/data/dates.ts`, `shared/date-catalog.ts`, `api/submit-response.ts`, `server/submissions.ts`, `server/guards.ts`, `server/email.ts`, `server/local-api.ts`, `vite.config.ts`, and `vercel.json`.
 

@@ -6,7 +6,7 @@ export type DatePhoto = { src: string; filename: string; alt: string; width?: nu
 export type DateIdea = {
   id: DateId; number: string; title: string; subtitle: string; category: string
   teaser: string; introduction: string; annotation: string; timing: string; sourceTiming: string
-  palette: { paper: string; ink: string; accent: string; background: string }
+  palette: { paper: string; ink: string; accent: string; background: string; pageInk?: string; pageAccent?: string }
   photos: DatePhoto[]; cover: DatePhoto; links: { href: string; label: string }[]
 }
 
@@ -16,8 +16,8 @@ const artDirection = {
     teaser: 'Хэдэн нүүдэл. Хөөрхөн яриа. Хоёулаа.',
     introduction: 'e4 Chess Bar-д хамтдаа цаг өнгөрөөх үү? Дунд маань шатрын хөлөг, дэргэд минь чи. Дараагийн нүүдлээ яаралгүй бодож, тухтай ярилцъя.',
     annotation: 'your move, my dear ♡',
-    // Warm paper tints of the rust/orange e4 branding (#b03010, #905030).
-    palette: { paper: '#e9bb9b', ink: '#562b1e', accent: '#903010', background: '#f0d6c4' }, coverIndex: 2,
+    // Strong orange from the e4 branding, with dark cocoa for readable text.
+    palette: { paper: '#eeac76', ink: '#3b1e13', accent: '#5b260e', background: '#e9823f' }, coverIndex: 2,
     alts: ['Терракот өнгийн дэвсгэр дээрх e4 Chess Bar-ийн лого', 'Шатрын дүрс, e4 Chess Bar-ийн таних тэмдэгтэй улбар шар постер', 'Шатрын хөлөг, уух зүйлтэй e4 Chess Bar-ийн шатрын үдшийн зураг'],
     linkLabels: ['e4-ийн Instagram', 'e4-ийг сонирхоё', 'Бас нэг бяцхан танилцуулга'],
   },
@@ -44,8 +44,8 @@ const artDirection = {
     teaser: 'Гоё тоглолт. Сайхан хань. Хоёулаа.',
     introduction: 'Үндэсний дээд лигийн сагсан бөмбөгийн тоглолтыг хамт үзэх үү? Хамтдаа догдолж, багаа дэмжээд, нэг оройг хөгжилтэй өнгөрөөе.',
     annotation: 'you + me, same team ♡',
-    // Indigo schedule background (#101030, #101070, #101090), softened for paper.
-    palette: { paper: '#c5cbea', ink: '#25274e', accent: '#3c4390', background: '#e0e3f4' }, coverIndex: 0,
+    // Midnight blue from the schedule; light page text and lavender paper details.
+    palette: { paper: '#c5cbea', ink: '#25274e', accent: '#3c4390', background: '#101d42', pageInk: '#f5f1e7', pageAccent: '#b8c7ff' }, coverIndex: 0,
     alts: ['Үндэсний дээд лигийн багуудын лого, тоглолтуудын хуваарь бүхий хөх дэвсгэртэй зураг'], linkLabels: ['Лигийн Facebook хуудас'],
   },
 } satisfies Record<DateId, object>

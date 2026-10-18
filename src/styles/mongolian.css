@@ -1,5 +1,12 @@
 /* The existing scrapbook compositions, tuned for the wider Mongolian letterforms. */
 .app{min-height:100svh;transition:background-color .25s ease}
+.view-chess{color:#3b1e13;--rose:#5b260e;--line:#9e4a2570}
+.view-chess .site-footer,.view-chess .site-header .restart-button,.view-chess .timing-note small{color:#4e2412}
+.view-chess :is(button,a):focus-visible{outline-color:#3b1e13}
+.view-basketball{color:#f5f1e7;--rose:#b8c7ff;--line:#465679}
+.view-basketball .site-footer,.view-basketball .site-header .restart-button,.view-basketball .timing-note small{color:#bdcbe6}
+.view-basketball :is(button,a):focus-visible{outline-color:#b8c7ff}
+.view-basketball .button-themed,.view-basketball .detail-photo-frame{color:var(--photo-ink)}
 .lightbox-bottom{justify-content:center;gap:32px}
 .handwritten{font-style:italic;font-size:19px;line-height:1.65}
 .intro h1{font-size:clamp(46px,4.4vw,63px);line-height:1.2;letter-spacing:-.045em}
@@ -88,7 +95,7 @@
 .folder-basketball .court-lines,.folder-basketball .court-lines::before,.folder-basketball .court-lines::after{border-color:#3c439036}.folder-basketball .basketball-doodle{color:#3c4390}
 .ticket-stub{background:var(--accent)}.theatre-sparkle{color:var(--accent)}
 .detail-theatre .detail-photo-frame{background:var(--ink)}.detail-theatre .detail-cover::before{background:var(--paper);color:var(--ink)}
-.detail-basketball .detail-cover{background:var(--paper);outline-color:#3c439035}.gallery-basketball .gallery-photo{border-color:var(--paper)}
+.detail-basketball .detail-cover{background:#1b2b55;outline-color:#7187bf70}.gallery-basketball .gallery-photo{border-color:var(--paper)}
 @media(max-width:760px){.surprise-row{justify-content:flex-start;margin:-43px 0 55px}.surprise-button{font-size:11px}.day-picker{padding:20px 12px 15px}.day-picker-heading{display:block}.day-picker-note{display:block;margin-top:6px}.day-picker input{font-size:16px}.day-shortcuts{gap:4px 14px}.day-preview{font-size:12px}.confirmed-day>p{font-size:17px;align-items:flex-start}.confirmed-day svg{margin-top:6px}.confirmed-day>span:last-child{font-size:10px}}
 @media(max-width:1050px){.section-heading h1{font-size:38px}.options-margin{max-width:180px}.folder-title{font-size:25px}.detail-copy h1{font-size:36px}.gallery-heading h2{font-size:29px}.intro h1{font-size:49px}.intro-ps{font-size:12px}.envelope-annotation{font-size:15px}}
 @media(max-width:760px){

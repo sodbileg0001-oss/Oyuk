@@ -47,6 +47,12 @@ test('all seven date pages, supplied images, focus management and navigation rem
     await expect(page.locator('h1')).toBeFocused()
     await expect(page.locator('.gallery-photo')).toHaveCount(counts[index])
     await settle(page)
+    if (counts[index] > 0) {
+      const cover = page.locator('.detail-photo-frame > img')
+      await expect(cover).toBeVisible()
+      await expect(page.locator('.date-backdrop')).toHaveCSS('position', 'fixed')
+      await expect(page.locator('.date-backdrop img')).toHaveAttribute('src', (await cover.getAttribute('src'))!)
+    }
     for (const image of await page.locator('img').all()) expect(await image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
     if (counts[index] > 0) {
       const first = page.locator('.gallery-photo').first()

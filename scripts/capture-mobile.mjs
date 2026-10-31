@@ -49,12 +49,12 @@ try {
   await page.locator('.folder-grid').waitFor()
   await capture('options', 'Seven little worlds', 'Your photos, waiting in their folders.')
   for (const [id, title, note] of [
-    ['chess', 'e4 Chess Bar', 'Ivory stationery, a chess night & antique gold'],
-    ['theatre', 'Амьтны ферм жүжиг', 'An old-world evening in a gilded album'],
-    ['exhibition', 'Социализмаар аялцгаая', 'Aged paper, photographs & a little time travel'],
-    ['basketball', 'Үндэсний дээд лиг', 'A shared evening, saved in an ivory folio'],
-    ['canvas', 'Canvas art', 'A little art in an antique garden album'],
-    ['boardgame', 'Board game', 'A little competition, a lot of laughter & ivory paper'],
+    ['chess', 'e4 Chess Bar', 'Chess-night photo background & the original gallery'],
+    ['theatre', 'Амьтны ферм жүжиг', 'Theatre photo background & the original gallery'],
+    ['exhibition', 'Социализмаар аялцгаая', 'Exhibition photo background & the original gallery'],
+    ['basketball', 'Үндэсний дээд лиг', 'Basketball photo background & the original gallery'],
+    ['canvas', 'Canvas art', 'Canvas photo background & the original gallery'],
+    ['boardgame', 'Board game', 'Board game photo background & the original gallery'],
     ['clayface', 'Clayface', 'One full-screen movie image & a seat beside you'],
   ]) {
     await page.getByRole('button', { name: `${title} — дэлгэрэнгүй`, exact: false }).click()

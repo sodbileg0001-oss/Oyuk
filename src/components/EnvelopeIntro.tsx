@@ -16,11 +16,11 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
   }
   return <section className={`intro page-enter ${opening ? 'is-opening' : ''}`} aria-labelledby="intro-heading">
     <div className="intro-copy">
-      <p className="eyebrow" lang="en"><span className="tiny-star">✳</span> THE TOGETHER JOURNAL / VOL. 01</p>
+      <p className="eyebrow" lang="en"><Heart filled /> A LITTLE LOVE LETTER</p>
       <h1 id="intro-heading" tabIndex={-1}>Чамаас нэг<br /><em>хөөрхөн зүйл</em><br />асууя<span className="period">.</span></h1>
       <p className="intro-description">Чамд зориулж бяцхан захиа бэлдлээ.<br />Хамтдаа өнгөрүүлэх цаг, хэдэн хөөрхөн санаа.<br />Нээгээд үзэх үү?</p>
       <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Захиаг чинь нээж байна…' : 'Захиагаа нээх'} <Heart /></button>
-      <span className="handwritten intro-ps" lang="en">p.s. this little corner is just for you.</span>
+      <span className="handwritten intro-ps">чин сэтгэлээсээ, би ♡</span>
     </div>
     <div className="intro-photo-scene">
       <div className="intro-glimpses">{glimpses.map(date => <div className={'intro-glimpse glimpse-' + date.id} key={date.id}><Photo photo={date.cover} eager /></div>)}</div>

@@ -9,7 +9,7 @@ export function DateFolderGrid({ visited, selected, onOpen, onQuestion }: { visi
     onOpen(options[Math.floor(Math.random() * options.length)].id)
   }
   return <section className="options page-enter" aria-labelledby="options-heading">
-    <div className="journal-heading"><span lang="en">THE TOGETHER JOURNAL</span><span>ЗӨВХӨН БИД ХОЁРЫН ХУУДАС</span></div>
+    <div className="journal-heading"><span lang="en">LOVE LETTERS & LITTLE PLANS</span><span>ЗӨВХӨН БИД ХОЁРЫН ХУУДАС</span></div>
     <div className="section-heading"><div><p className="eyebrow">ХАМТДАА ӨНГӨРҮҮЛЭХ ЦАГИЙН ТУХАЙ</p><h1 id="options-heading" tabIndex={-1}>{dates.length} бяцхан санаа.<br /><em>Хамгийн гоё нь — хоёулаа.</em></h1></div><div className="options-margin"><span className="handwritten">аль нь бид хоёрт тохирох бол?</span><div className="explore-progress" aria-label={`${dates.length} санаанаас ${visited.length}-ыг үзлээ`}><span>{dates.map(date => <i key={date.id} className={visited.includes(date.id) ? 'is-seen' : ''} />)}</span><small>{visited.length} / {dates.length} САНААГ ҮЗЛЭЭ</small></div></div></div>
     <p className="options-intro">Чамтай хамт хийх хэдэн санаа бэлдлээ. Хавтас бүрийг нээгээд,<br className="desktop-break" /> юу нь чамд таалагдахыг сонирхоорой. Аль нь ч гоё.</p>
     <div className="surprise-row"><button className="surprise-button" onClick={surprise}><span aria-hidden="true">✧</span> Нэг санаа сугалах уу? <span lang="en">surprise me</span></button></div>

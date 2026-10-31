@@ -4,6 +4,6 @@ import './styles/fonts.css'
 import App from './App'
 import './styles/global.css'
 import './styles/mongolian.css'
-import './styles/autumn.css'
+import './styles/love-letter.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>)

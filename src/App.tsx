@@ -31,7 +31,7 @@ export default function App() {
   const current = getDate(view)
   const confirmedDate = getDate(invitation.receipt?.selectedDateId ?? null)
   const questionDate = submission.locked ? getDate(submission.draft.selectedDateId) : selected
-  const pageBackground = current?.palette.background ?? '#f4f0e5'
+  const pageBackground = current?.id === 'clayface' ? current.palette.background : '#f6d9df'
 
   function navigate(next: View, replace = false) {
     if (replace) history.replaceState(null, '', `#${next}`)

@@ -7,7 +7,7 @@ const back = (page: Page) => page.getByRole('button', { name: 'Бяцхан са
 
 async function openLetter(page: Page) {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Санаануудыг харах', exact: true }).first().click()
+  await page.getByRole('button', { name: 'Үзэх', exact: true }).click()
   await expect(page.locator('.date-folder')).toHaveCount(names.length)
 }
 async function settle(page: Page) {
@@ -152,7 +152,7 @@ test('a real local API request reports missing configuration as JSON and the vis
 
 test('hash deep links survive the opening letter and Mongolian fonts load', async ({ page }) => {
   await page.goto('/#exhibition')
-  await page.getByRole('button', { name: 'Санаануудыг харах', exact: true }).first().click()
+  await page.getByRole('button', { name: 'Үзэх', exact: true }).click()
   await expect(page.locator('h1')).toHaveText(names[2])
   await page.reload()
   await expect(page.locator('h1')).toHaveText(names[2])
@@ -175,7 +175,7 @@ for (const width of [360, 390, 768, 1440]) {
     if (width === 390 || width === 1440) await page.screenshot({ path: `qa/mn-intro-${width}.png`, fullPage: true })
     async function noOverflow() { expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true) }
     await noOverflow()
-    await page.getByRole('button', { name: 'Санаануудыг харах', exact: true }).first().click()
+    await page.getByRole('button', { name: 'Үзэх', exact: true }).click()
     await noOverflow()
     if (width === 390) { await settle(page); await page.screenshot({ path: 'qa/mn-options-mobile.png', fullPage: true }) }
     for (const name of names) { await explore(page, name).click(); await noOverflow(); await back(page).click() }
@@ -226,7 +226,7 @@ test('surprise opens unexplored folders without choosing or submitting; the prop
 test('Canvas art deep link, prepared materials, flexible timing and selected response persist', async ({ page }) => {
   const calls = await mockApi(page)
   await page.goto('/#canvas')
-  await page.getByRole('button', { name: 'Санаануудыг харах', exact: true }).first().click()
+  await page.getByRole('button', { name: 'Үзэх', exact: true }).click()
   await expect(page.locator('h1')).toHaveText('Canvas art')
   await expect(page.locator('.detail-description')).toContainText('чамд өгчихсөн')
   await expect(page.locator('.timing-note')).toContainText('Хоёуланд маань тохирох өдөр')
@@ -250,7 +250,7 @@ for (const [id, title] of [['boardgame', 'Board game'], ['clayface', 'Clayface']
   test(`${title} deep link, supplied photos and selected response persist`, async ({ page }) => {
     const calls = await mockApi(page)
     await page.goto('/#' + id)
-    await page.getByRole('button', { name: 'Санаануудыг харах', exact: true }).first().click()
+    await page.getByRole('button', { name: 'Үзэх', exact: true }).click()
     await expect(page.locator('h1')).toHaveText(title)
     await expect(page.locator('.gallery-photo')).toHaveCount(id === 'clayface' ? 0 : 8)
     await expect(page.locator('.timing-note')).toContainText('Хамтдаа шийдье')

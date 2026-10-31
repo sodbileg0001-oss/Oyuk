@@ -45,7 +45,7 @@ try {
   await page.goto(base)
   await page.locator('.intro').waitFor()
   await capture('letter', 'The garden invitation', 'Willows, an ivory lace border & antique picture frames.')
-  await page.getByRole('button', { name: 'Санаануудыг харах', exact: true }).first().click()
+  await page.getByRole('button', { name: 'Үзэх', exact: true }).click()
   await page.locator('.folder-grid').waitFor()
   await capture('options', 'Seven little worlds', 'Your photos, waiting in their folders.')
   for (const [id, title, note] of [

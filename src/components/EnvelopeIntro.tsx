@@ -14,10 +14,9 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
     setOpening(true)
     timer.current = setTimeout(onOpen, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650)
   }
-  return <section className={`intro page-enter ${opening ? 'is-opening' : ''}`} aria-labelledby="intro-heading">
+  return <section className={`intro page-enter ${opening ? 'is-opening' : ''}`} aria-label="Санаанууд">
     <div className="intro-copy">
-      <h1 id="intro-heading" tabIndex={-1}>Хамт<br /><em>гарах уу?</em></h1>
-      <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Нээж байна…' : 'Санаануудыг харах'} <Arrow /></button>
+      <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Нээж байна…' : 'Үзэх'} <Arrow /></button>
     </div>
     <div className="intro-photo-scene">
       <div className="intro-glimpses">{glimpses.map(date => <div className={'intro-glimpse glimpse-' + date.id} key={date.id}><Photo photo={date.cover} eager /></div>)}</div>

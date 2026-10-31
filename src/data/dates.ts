@@ -4,7 +4,7 @@ export type { DateId } from '../../shared/date-catalog'
 
 export type DatePhoto = { src: string; filename: string; alt: string; width?: number; height?: number }
 export type DateIdea = {
-  id: DateId; number: string; title: string; subtitle: string; category: string
+  id: DateId; number: string; title: string; titleLanguage: 'en' | 'mn'; subtitle: string; category: string
   teaser: string; introduction: string; annotation: string; timing: string; sourceTiming: string
   palette: { paper: string; ink: string; accent: string; background: string; pageInk?: string; pageAccent?: string }
   photos: DatePhoto[]; cover: DatePhoto; links: { href: string; label: string }[]
@@ -71,6 +71,46 @@ const artDirection = {
     },
     linkLabels: [],
   },
+  boardgame: {
+    subtitle: 'Тоглоом эхэллээ. Хоёулаа бэлэн үү?', category: 'A LITTLE FRIENDLY COMPETITION',
+    teaser: 'Жаахан өрсөлдөөн. Маш их инээд.',
+    introduction: 'Хамтдаа ширээний тоглоом тоглох уу? Нэг тоглоомоо сонгоод, дүрмээ хамтдаа ойлгож, хожихоосоо илүү хөгжилдөхөд анхааръя. Ямар тоглоом тоглох, хаана уулзахаа хоёулаа тохиръё.',
+    annotation: 'your turn, my favourite person ♡',
+    palette: { paper: '#dce2c9', ink: '#2d4030', accent: '#526538', background: '#e8ecdc' }, coverIndex: 7,
+    coverFilename: 'images.jpg',
+    alts: [] as string[],
+    photoAlts: {
+      'images (1).jpg': 'Шатар, даам болон нардны модон хөлөг, тоглоомын дүрснүүд',
+      'images (2).jpg': 'Sorry, Connect 4, Twister болон бусад ширээний тоглоомын хайрцагнууд',
+      'images (3).jpg': 'Worms ширээний тоглоомын хайрцаг, хөлөг болон дүрснүүд',
+      'images (4).jpg': 'Улаан хайрцагтай Mahabharata ширээний тоглоом',
+      'images (5).jpg': 'Catan ширээний тоглоомын хайрцаг',
+      'images (6).jpg': 'Ногоон дэвсгэр дээрх Tetris болон Sushi Go тоглоомын хайрцагнууд',
+      'images (7).jpg': 'Модон даамны хөлөг дээрх хар, цагаан даамнууд',
+      'images.jpg': 'Monopoly, Sleeping Queens, даам, нард болон шатрын тоглоомын цуглуулга',
+    },
+    linkLabels: ['Тоглоомын тухай Instagram пост'],
+  },
+  clayface: {
+    subtitle: 'Нэг кино, зэрэгцээ хоёр суудал.', category: 'A MOVIE NIGHT FOR TWO',
+    teaser: 'Дэлгэцэн дээр кино. Дэргэд минь чи.',
+    introduction: 'Clayface киног хамт үзэх үү? Зэрэгцэж суугаад, нэг түүхийг хамтдаа үзэж, дараа нь сэтгэгдлээ ярилцъя. Үзэх боломж, өдөр, цагаа хоёулаа шалгаад тохиръё.',
+    annotation: 'save me the seat next to you ♡',
+    palette: { paper: '#302423', ink: '#fff3df', accent: '#f0b493', background: '#241b1b', pageInk: '#fff3df', pageAccent: '#f0b493' }, coverIndex: 0,
+    coverFilename: 'b6ecvb8oo2.webp',
+    alts: [] as string[],
+    photoAlts: {
+      'b6ecvb8oo2.webp': 'Clayface нэртэй, нүүрний хажуу талаас харуулсан хар, улаан кино постер',
+      'images (1).jpg': 'Улаан, хар өнгөөр хуваасан эрэгтэй хүний нүүртэй Clayface постер',
+      'images (2).jpg': 'Цагаан дэвсгэр, нүүрний хэсгүүд болон улаан дүрстэй Clayface постер',
+      'images (3).jpg': 'Улаан хүрээтэй, хайлж буй нүүр болон гэрэлтэй Clayface постер',
+      'images (4).jpg': 'Нүүрэндээ гараа хүргэсэн ногоон нүдтэй дүрийн Clayface постер',
+      'images (5).jpg': 'Олон нүүр давхарласан улаан, бор өнгийн Clayface постер',
+      'images (6).jpg': 'Хайлж буй нүүртэй, бараан дэвсгэртэй Clayface постер',
+      'images.jpg': 'Хар дэвсгэр дээр хашгирч буй дүртэй Clayface постер',
+    },
+    linkLabels: [],
+  },
 } satisfies Record<DateId, object>
 
 function localizeTiming(value: string) {
@@ -89,7 +129,7 @@ export const dates: DateIdea[] = manifest.map((source, index) => {
   const photos = source.images.map((image, i) => ({ ...image, alt: photoAlts[image.filename] ?? direction.alts[i] ?? `${source.folder} — зураг ${i + 1}` }))
   const coverFilename = 'coverFilename' in direction ? direction.coverFilename : undefined
   const urls = [...note.matchAll(/https?:\/\/[^\s]+/g)].map(match => match[0])
-  return { id, number: String(index + 1).padStart(2, '0'), ...direction, title: dateCatalog[id], timing: localizeTiming(sourceTiming), sourceTiming, photos, cover: photos.find(photo => photo.filename === coverFilename) ?? photos[direction.coverIndex] ?? photos[0], links: urls.map((href, i) => ({ href, label: direction.linkLabels[i] ?? 'Дэлгэрэнгүй үзэх' })) }
+  return { id, number: String(index + 1).padStart(2, '0'), ...direction, title: dateCatalog[id], titleLanguage: ['chess', 'canvas', 'boardgame', 'clayface'].includes(id) ? 'en' : 'mn', timing: localizeTiming(sourceTiming), sourceTiming, photos, cover: photos.find(photo => photo.filename === coverFilename) ?? photos[direction.coverIndex] ?? photos[0], links: urls.map((href, i) => ({ href, label: direction.linkLabels[i] ?? 'Дэлгэрэнгүй үзэх' })) }
 })
 
 export function getDate(id: string | null): DateIdea | undefined { return dates.find(date => date.id === id) }

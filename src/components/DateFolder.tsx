@@ -3,16 +3,33 @@ import type { DateIdea } from '../data/dates'
 import { Arrow, Heart, Sparkle } from './Illustrations'
 import { Photo } from './Photo'
 
+const symbols = { chess: '♞', theatre: '✧', exhibition: '↗', basketball: '◎', canvas: '✳', boardgame: '⚄', clayface: '▶' }
+
 export function DateFolder({ date, seen, selected, onOpen }: { date: DateIdea; seen: boolean; selected: boolean; onOpen: () => void }) {
-  return <button className={`date-folder folder-${date.id}`} style={{ '--paper': date.palette.paper, '--ink': date.palette.ink, '--accent': date.palette.accent } as CSSProperties} onClick={onOpen} aria-label={`${date.title} — дэлгэрэнгүй${selected ? ', чиний сонголт' : ''}`}>
+  const secondary = date.photos.find(photo => photo.src !== date.cover.src)
+  return <button
+    className={['date-folder', 'folder-' + date.id, selected ? 'is-selected' : ''].join(' ')}
+    style={{ '--paper': date.palette.paper, '--ink': date.palette.ink, '--accent': date.palette.accent } as CSSProperties}
+    onClick={onOpen}
+    aria-label={date.title + ' — дэлгэрэнгүй' + (selected ? ', чиний сонголт' : '')}
+  >
     <span className="folder-tab">БЯЦХАН САНАА № {date.number} {selected ? <Heart filled /> : seen ? <span className="seen-check">✓ <span className="sr-only">үзсэн</span></span> : <span>♡</span>}</span>
     <span className="folder-art">
-      {date.id === 'chess' && <><span className="checker-strip" /><span className="chess-piece" aria-hidden="true">♞</span><span className="polaroid chess-main"><Photo photo={date.cover} /><span className="handwritten">хөөрхөн эхний нүүдэл.</span></span><span className="mini-polaroid"><Photo photo={date.photos[0]} /></span><span className="round-sticker">чи, би<br />ба жаахан<br /><i>шатар</i></span></>}
-      {date.id === 'theatre' && <><span className="theatre-rules" /><span className="theatre-poster"><Photo photo={date.photos[5] ?? date.cover} /></span><span className="theatre-cast"><Photo photo={date.cover} /></span><span className="ticket-stub"><span>ХОЁР ХҮНИЙ</span><i>бидний<br />нэг үдэш</i><span>♡ &nbsp; 02 &nbsp; ♡</span></span><Sparkle className="theatre-sparkle" /></>}
-      {date.id === 'exhibition' && <><span className="postcard"><Photo photo={date.cover} /><span className="postcard-caption">ӨӨР НЭГЭН ЦАГ ҮЕД</span></span><span className="tape" /><span className="travel-stamp">ХАМТДАА<br /><i>аялъя</i><br />ХОЁУЛАА</span><span className="exhibition-line" /><span className="handwritten archive-note">өнгөрсний нэгэн хуудас…</span></>}
-      {date.id === 'basketball' && <><span className="court-lines" /><span className="league-photo"><Photo photo={date.cover} /></span><span className="basketball-doodle" aria-hidden="true"><svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="36" cy="36" r="32" /><path d="m12 14 48 44M12 58 59 14M5 37c20-10 35 1 32 30M37 5c-6 23 9 31 30 30" /></svg></span><span className="score-note">ЧИ + БИ<br /><i>нэг баг.</i></span><span className="handwritten league-note">хөөрхөн баг болох нь ♡</span></>}
-      {date.id === 'canvas' && <><span className="canvas-paper-lines" /><span className="canvas-main"><Photo photo={date.cover} /></span><span className="canvas-mini"><Photo photo={date.photos[0] ?? date.cover} /></span><span className="canvas-tape" /><span className="paint-swatches" aria-hidden="true"><i /><i /><i /><i /></span><span className="handwritten canvas-note" lang="en">a little art, a little us.</span><svg className="palette-doodle" width="70" height="60" viewBox="0 0 70 60" fill="none" aria-hidden="true"><path d="M35 5C15 4 4 19 6 35c2 17 16 23 28 19 8-2 2-9 8-13 6-4 16 6 21-6C70 19 53 5 35 5Z" stroke="currentColor" strokeWidth="1.5" /><circle cx="24" cy="18" r="4" fill="#d2b46c" /><circle cx="43" cy="16" r="4" fill="#a6b38c" /><circle cx="55" cy="27" r="4" fill="#c5908b" /><circle cx="15" cy="33" r="4" fill="#b2a0c8" /><circle cx="29" cy="40" r="4" stroke="currentColor" strokeWidth="1.5" /></svg></>}
+      {date.id === 'clayface' ? <Photo photo={date.cover} className="cinema-folder-image" /> : <>
+      <span className="journal-rules" aria-hidden="true" />
+      <span className="journal-photo"><Photo photo={date.cover} /><span className="journal-photo-label" lang="en">a little time, together</span></span>
+      {secondary && <span className="journal-photo-small"><Photo photo={secondary} /></span>}
+      <span className="journal-tape" aria-hidden="true" />
+      <span className="journal-symbol" aria-hidden="true">{symbols[date.id]}</span>
+      <span className="journal-photo-count" aria-hidden="true">{String(date.photos.length).padStart(2, '0')} PHOTOS / ♡</span>
+      <Sparkle className="journal-sparkle" />
+      </>}
     </span>
-    <span className="folder-copy"><span className="folder-category">{date.category}</span><span className="folder-title" lang={(date.id === 'chess' || date.id === 'canvas') ? 'en' : 'mn'}>{date.title}</span><span className="folder-teaser">{date.teaser}</span><span className="folder-open">Нээгээд үзье <Arrow /></span></span>
+    <span className="folder-copy">
+      <span className="folder-category">{date.category}</span>
+      <span className="folder-title" lang={date.titleLanguage}>{date.title}</span>
+      <span className="folder-teaser">{date.teaser}</span>
+      <span className="folder-open">Нээгээд үзье <Arrow /></span>
+    </span>
   </button>
 }

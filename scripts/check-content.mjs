@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 
 const project = fileURLToPath(new URL('../', import.meta.url))
 const source = JSON.parse(await readFile(path.join(project, 'src/data/source-manifest.json'), 'utf8'))
-assert.deepEqual(source.map(date => date.id), ['chess', 'theatre', 'exhibition', 'basketball', 'canvas'], 'All five source folders are represented')
+assert.deepEqual(source.map(date => date.id), ['chess', 'theatre', 'exhibition', 'basketball', 'canvas', 'boardgame', 'clayface'], 'All seven source folders are represented')
 let total = 0
 for (const date of source) {
   assert.ok(date.notes.length, `Instructions for ${date.id}`)

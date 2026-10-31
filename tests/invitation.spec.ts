@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test'
 
-const names = ['e4 Chess Bar', 'Амьтны ферм жүжиг', 'Социализмаар аялцгаая', 'Үндэсний дээд лиг', 'Canvas art']
-const counts = [3, 8, 7, 1, 8]
+const names = ['e4 Chess Bar', 'Амьтны ферм жүжиг', 'Социализмаар аялцгаая', 'Үндэсний дээд лиг', 'Canvas art', 'Board game', 'Clayface']
+const counts = [3, 8, 7, 1, 8, 8, 0]
 const explore = (page: Page, name: string) => page.getByRole('button', { name: `${name} — дэлгэрэнгүй`, exact: false })
 const back = (page: Page) => page.getByRole('button', { name: 'Бяцхан санаанууд руу буцах' }).first()
 
@@ -34,7 +34,7 @@ async function mockApi(page: Page, failSubmissions = 0) {
   return calls
 }
 
-test('all five real date galleries, images, focus management and navigation remain intact', async ({ page }) => {
+test('all seven date pages, supplied images, focus management and navigation remain intact', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
@@ -48,16 +48,18 @@ test('all five real date galleries, images, focus management and navigation rema
     await expect(page.locator('.gallery-photo')).toHaveCount(counts[index])
     await settle(page)
     for (const image of await page.locator('img').all()) expect(await image.evaluate(element => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0)
-    const first = page.locator('.gallery-photo').first()
-    await first.click()
-    await expect(page.getByRole('dialog')).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Зургийг хаах' })).toBeFocused()
-    await page.keyboard.press('Shift+Tab')
-    expect(await page.evaluate(() => !!document.activeElement?.closest('dialog'))).toBe(true)
-    await page.keyboard.press('Tab')
-    if (counts[index] > 1) { await page.keyboard.press('ArrowRight'); await expect(page.locator('.lightbox-toolbar')).toContainText(`2 / ${counts[index]}`) }
-    await page.keyboard.press('Escape')
-    await expect(first).toBeFocused()
+    if (counts[index] > 0) {
+      const first = page.locator('.gallery-photo').first()
+      await first.click()
+      await expect(page.getByRole('dialog')).toBeVisible()
+      await expect(page.getByRole('button', { name: 'Зургийг хаах' })).toBeFocused()
+      await page.keyboard.press('Shift+Tab')
+      expect(await page.evaluate(() => !!document.activeElement?.closest('dialog'))).toBe(true)
+      await page.keyboard.press('Tab')
+      if (counts[index] > 1) { await page.keyboard.press('ArrowRight'); await expect(page.locator('.lightbox-toolbar')).toContainText(`2 / ${counts[index]}`) }
+      await page.keyboard.press('Escape')
+      await expect(first).toBeFocused()
+    }
     await settle(page)
     await page.screenshot({ path: `qa/mn-detail-${index + 1}.png`, fullPage: true })
     await back(page).click()
@@ -243,3 +245,34 @@ test('Canvas art deep link, prepared materials, flexible timing and selected res
   await expect(page.locator('.confirmation-recap')).toContainText('Canvas art')
   expect(calls).toHaveLength(2)
 })
+
+for (const [id, title] of [['boardgame', 'Board game'], ['clayface', 'Clayface']]) {
+  test(`${title} deep link, supplied photos and selected response persist`, async ({ page }) => {
+    const calls = await mockApi(page)
+    await page.goto('/#' + id)
+    await page.getByRole('button', { name: 'Захиагаа нээх', exact: true }).first().click()
+    await expect(page.locator('h1')).toHaveText(title)
+    await expect(page.locator('.gallery-photo')).toHaveCount(id === 'clayface' ? 0 : 8)
+    await expect(page.locator('.timing-note')).toContainText('Хамтдаа шийдье')
+    if (id === 'boardgame') {
+      await expect(page.locator('.source-links a')).toHaveAttribute('href', 'https://www.instagram.com/p/Dd6U0HMRoXE/')
+    } else {
+      await expect(page.locator('.cinema-backdrop img')).toHaveAttribute('src', /b6ecvb8oo2\.webp$/)
+      await expect(page.locator('img')).toHaveCount(1)
+      await expect(page.locator('.cinema-backdrop')).toHaveCSS('position', 'fixed')
+      await expect(page.locator('.detail-description')).toContainText('Үзэх боломж')
+      await expect(page.locator('.app')).toHaveCSS('background-color', 'rgb(36, 27, 27)')
+    }
+    expect(calls).toHaveLength(0)
+    await page.reload()
+    await expect(page.locator('h1')).toHaveText(title)
+    await page.getByRole('button', { name: 'Энэ болзоог сонгоё' }).first().click()
+    await expect(page.locator('.selected-plan-note')).toContainText(title)
+    await page.getByRole('button', { name: 'Хариугаа илгээх', exact: true }).click()
+    await expect(page.locator('.confirmation-recap')).toContainText(title)
+    expect(calls[1]).toMatchObject({ intent: 'submit', selectedDateId: id, response: 'yes', preferredDay: null })
+    await page.reload()
+    await expect(page.locator('.confirmation-recap')).toContainText(title)
+    expect(calls).toHaveLength(2)
+  })
+}

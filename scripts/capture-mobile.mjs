@@ -44,16 +44,18 @@ try {
   }
   await page.goto(base)
   await page.locator('.intro').waitFor()
-  await capture('letter', 'The little letter', 'A little Mongolian, a little English.')
+  await capture('letter', 'The little letter', 'Three quiet glimpses, tucked around a letter.')
   await page.getByRole('button', { name: 'Захиагаа нээх', exact: true }).first().click()
   await page.locator('.folder-grid').waitFor()
-  await capture('options', 'Five little worlds', 'Your photos, waiting in their folders.')
+  await capture('options', 'Seven little worlds', 'Your photos, waiting in their folders.')
   for (const [id, title, note] of [
     ['chess', 'e4 Chess Bar', 'Burnt orange & bolder white lettering'],
     ['theatre', 'Амьтны ферм жүжиг', 'Slate stage backdrops & red costume details'],
     ['exhibition', 'Социализмаар аялцгаая', 'Aged exhibit labels, ochre & rust'],
     ['basketball', 'Үндэсний дээд лиг', 'Midnight blue, warm white & lavender details'],
     ['canvas', 'Canvas art', 'A lilac studio, a ready canvas & time together'],
+    ['boardgame', 'Board game', 'Sage paper, a little competition & lots of laughter'],
+    ['clayface', 'Clayface', 'One full-screen movie image & a seat beside you'],
   ]) {
     await page.getByRole('button', { name: `${title} — дэлгэрэнгүй`, exact: false }).click()
     await page.locator(`.detail-${id}`).waitFor()
@@ -75,7 +77,7 @@ try {
   await board.goto(`${base}/qa/mobile-preview.html`)
   await settle(board)
   await board.screenshot({ path: path.join(output, 'mobile-preview.png'), fullPage: true })
-  console.log('Mobile previews ready: qa/mobile-preview.html, qa/mobile-preview.png, and full-page screenshots of all five dates.')
+  console.log('Mobile previews ready: qa/mobile-preview.html, qa/mobile-preview.png, and full-page screenshots of all seven dates.')
 } finally {
   await browser?.close()
   ownedServer?.kill()

@@ -222,5 +222,133 @@
         "height": 750
       }
     ]
+  },
+  {
+    "id": "boardgame",
+    "folder": "Board game",
+    "instructionFile": "content/boardgame.md",
+    "notes": [
+      {
+        "filename": "Instagram post.txt",
+        "text": "Instagram post:\r\n\r\n\r\nhttps://www.instagram.com/p/Dd6U0HMRoXE/"
+      },
+      {
+        "filename": "content/boardgame.md",
+        "source": "project",
+        "text": "# Board game\n\nThe invitation's author added the Board game folder as a new date idea.\nIts eight supplied images are board game inspiration. Its original Instagram\npost remains in the source manifest and is linked from the date page.\n\nNo venue, price, booking, or available day was supplied. Choose a game and\nagree on a day together; the pictures do not promise a venue's game inventory."
+      }
+    ],
+    "images": [
+      {
+        "filename": "images (1).jpg",
+        "src": "/dates/boardgame/images%20(1).jpg",
+        "width": 447,
+        "height": 447
+      },
+      {
+        "filename": "images (2).jpg",
+        "src": "/dates/boardgame/images%20(2).jpg",
+        "width": 450,
+        "height": 444
+      },
+      {
+        "filename": "images (3).jpg",
+        "src": "/dates/boardgame/images%20(3).jpg",
+        "width": 554,
+        "height": 554
+      },
+      {
+        "filename": "images (4).jpg",
+        "src": "/dates/boardgame/images%20(4).jpg",
+        "width": 480,
+        "height": 640
+      },
+      {
+        "filename": "images (5).jpg",
+        "src": "/dates/boardgame/images%20(5).jpg",
+        "width": 520,
+        "height": 384
+      },
+      {
+        "filename": "images (6).jpg",
+        "src": "/dates/boardgame/images%20(6).jpg",
+        "width": 400,
+        "height": 400
+      },
+      {
+        "filename": "images (7).jpg",
+        "src": "/dates/boardgame/images%20(7).jpg",
+        "width": 447,
+        "height": 447
+      },
+      {
+        "filename": "images.jpg",
+        "src": "/dates/boardgame/images.jpg",
+        "width": 447,
+        "height": 447
+      }
+    ]
+  },
+  {
+    "id": "clayface",
+    "folder": "Clayface",
+    "instructionFile": "content/clayface.md",
+    "notes": [
+      {
+        "filename": "content/clayface.md",
+        "source": "project",
+        "text": "# Clayface movie\n\nThe invitation's author added the Clayface folder as a new movie date idea.\nKeep all eight supplied movie images in the source archive. The author then\nrequested one chosen photo as the background: use b6ecvb8oo2.webp for the\nfull-screen date page and the movie folder cover, without a poster gallery.\n\nNo cinema, local release date, showtime, ticket price, booking, or viewing\navailability was supplied. Agree on a day and check viewing options together.\nDates printed on the supplied posters are artwork, not verified local showtimes."
+      }
+    ],
+    "images": [
+      {
+        "filename": "b6ecvb8oo2.webp",
+        "src": "/dates/clayface/b6ecvb8oo2.webp",
+        "width": 1365,
+        "height": 2042
+      },
+      {
+        "filename": "images (1).jpg",
+        "src": "/dates/clayface/images%20(1).jpg",
+        "width": 455,
+        "height": 675
+      },
+      {
+        "filename": "images (2).jpg",
+        "src": "/dates/clayface/images%20(2).jpg",
+        "width": 455,
+        "height": 673
+      },
+      {
+        "filename": "images (3).jpg",
+        "src": "/dates/clayface/images%20(3).jpg",
+        "width": 399,
+        "height": 501
+      },
+      {
+        "filename": "images (4).jpg",
+        "src": "/dates/clayface/images%20(4).jpg",
+        "width": 387,
+        "height": 516
+      },
+      {
+        "filename": "images (5).jpg",
+        "src": "/dates/clayface/images%20(5).jpg",
+        "width": 495,
+        "height": 619
+      },
+      {
+        "filename": "images (6).jpg",
+        "src": "/dates/clayface/images%20(6).jpg",
+        "width": 495,
+        "height": 619
+      },
+      {
+        "filename": "images.jpg",
+        "src": "/dates/clayface/images.jpg",
+        "width": 455,
+        "height": 674
+      }
+    ]
   }
 ]

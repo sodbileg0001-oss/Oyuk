@@ -10,6 +10,8 @@ const mapping = [
   { id: 'exhibition', folder: 'Социализмаар аялцгаая' },
   { id: 'basketball', folder: 'Үндэсний дээд лиг' },
   { id: 'canvas', folder: 'Canvas art', instructionFile: 'content/canvas.md' },
+  { id: 'boardgame', folder: 'Board game', instructionFile: 'content/boardgame.md' },
+  { id: 'clayface', folder: 'Clayface', instructionFile: 'content/clayface.md' },
 ]
 const output = path.join(project, 'src/data/source-manifest.json')
 const existing = await readFile(output, 'utf8').then(JSON.parse).catch(() => null)
@@ -17,6 +19,15 @@ const manifest = []
 
 function dimensions(bytes) {
   if (bytes.subarray(1, 4).toString() === 'PNG') return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) }
+  if (bytes.length >= 30 && bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP') {
+    const format = bytes.toString('ascii', 12, 16)
+    if (format === 'VP8X') return { width: 1 + bytes.readUIntLE(24, 3), height: 1 + bytes.readUIntLE(27, 3) }
+    if (format === 'VP8 ') return { width: bytes.readUInt16LE(26) & 0x3fff, height: bytes.readUInt16LE(28) & 0x3fff }
+    if (format === 'VP8L') {
+      const size = bytes.readUInt32LE(21)
+      return { width: 1 + (size & 0x3fff), height: 1 + ((size >>> 14) & 0x3fff) }
+    }
+  }
   if (bytes.readUInt16BE(0) === 0xffd8) {
     let offset = 2
     while (offset + 9 < bytes.length) {

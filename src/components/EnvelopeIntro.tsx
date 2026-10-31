@@ -17,17 +17,16 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
   return <section className={`intro page-enter ${opening ? 'is-opening' : ''}`} aria-labelledby="intro-heading">
     <div className="intro-copy">
       <h1 id="intro-heading" tabIndex={-1}>Хамт<br /><em>гарах уу?</em></h1>
-      <p className="intro-description">Хамт хийж болох хэдэн санаа байна.<br />Сонирхоод үзээрэй.</p>
       <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Нээж байна…' : 'Санаануудыг харах'} <Arrow /></button>
     </div>
     <div className="intro-photo-scene">
       <div className="intro-glimpses">{glimpses.map(date => <div className={'intro-glimpse glimpse-' + date.id} key={date.id}><Photo photo={date.cover} eager /></div>)}</div>
       <Sparkle className="intro-photo-sparkle" />
       <button className="envelope" onClick={open} disabled={opening} aria-label="Санаануудыг харах">
-        <span className="letter-insert"><span className="handwritten">Сайн уу,</span><span className="letter-lines" /></span>
+        <span className="letter-insert"><span className="letter-lines" /></span>
         <span className="envelope-back" />
         <span className="envelope-flap" />
-        <span className="envelope-front"><span className="recipient">УРИЛГА<br /><span>ХАМТ ХИЙХ ЗҮЙЛС</span></span><span className="postage-stamp"><Flower /><span>нээх</span></span></span>
+        <span className="envelope-front"><span className="postage-stamp"><Flower /></span></span>
         <span className="wax-seal"><Heart filled /></span>
       </button>
     </div>

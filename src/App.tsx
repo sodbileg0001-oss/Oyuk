@@ -49,7 +49,7 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState)
   }, [invitation.opened, invitation.accepted])
   useEffect(() => {
-    document.title = current ? `${current.title} · Бидний бяцхан санаанууд` : view === 'confirmation' ? 'Хариуг чинь хүлээж авлаа ♡' : 'Чамд бичсэн бяцхан захиа ♡'
+    document.title = view === 'letter' ? 'Хамт гарах уу?' : current ? `${current.title} · Бидний бяцхан санаанууд` : view === 'confirmation' ? 'Хариуг чинь хүлээж авлаа ♡' : 'Чамд бичсэн бяцхан захиа ♡'
     if (initial.current) { initial.current = false; return }
     requestAnimationFrame(() => main.current?.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true }))
   }, [view, current])
@@ -78,6 +78,6 @@ export default function App() {
       {view === 'question' && <FinalInvitation selected={questionDate} response={submission.draft.response} preferredDay={submission.draft.preferredDay} message={submission.draft.message} website={submission.draft.website} busy={submission.busy} locked={submission.locked} error={submission.error} onEdit={submission.edit} onSubmit={() => submission.submit(invitation.selected, receipt => { invitation.complete(receipt); navigate('confirmation') })} onBack={() => navigate('options')} />}
       {view === 'confirmation' && invitation.receipt && <ConfirmationScreen selected={confirmedDate} response={invitation.receipt.response} preferredDay={invitation.receipt.preferredDay} onBack={() => navigate('options')} onDetail={() => confirmedDate && openDate(confirmedDate.id)} />}
     </main>
-    <footer className="site-footer"><span>ЖААХАН ЗОРИГ ГАРГААД <Heart /></span><span className="handwritten">маш их сэтгэл шингээв.</span><span>ЗӨВХӨН ЧАМД.</span></footer>
+    {view !== 'letter' && <footer className="site-footer"><span>ЖААХАН ЗОРИГ ГАРГААД <Heart /></span><span className="handwritten">маш их сэтгэл шингээв.</span><span>ЗӨВХӨН ЧАМД.</span></footer>}
   </div>
 }

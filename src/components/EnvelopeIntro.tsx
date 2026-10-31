@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Arrow, Flower, Heart, Sparkle } from './Illustrations'
 import { dates } from '../data/dates'
 import { Photo } from './Photo'
-import { GardenSeal } from './GardenSeal'
 
 const glimpses = dates.filter(date => ['chess', 'canvas', 'boardgame'].includes(date.id))
 
@@ -17,24 +16,21 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
   }
   return <section className={`intro page-enter ${opening ? 'is-opening' : ''}`} aria-labelledby="intro-heading">
     <div className="intro-copy">
-      <GardenSeal />
-      <p className="eyebrow">ЗӨВХӨН ЧАМД</p>
-      <h1 id="intro-heading" tabIndex={-1}>Чамаас нэг<br /><em>хөөрхөн зүйл</em><br />асууя<span className="period">.</span></h1>
-      <p className="intro-description">Чамд зориулж бяцхан захиа бэлдлээ.<br />Хамтдаа өнгөрүүлэх цаг, хэдэн хөөрхөн санаа.<br />Нээгээд үзэх үү?</p>
-      <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Захиаг чинь нээж байна…' : 'Захиагаа нээх'} <Heart /></button>
-      <span className="handwritten intro-ps" lang="en">p.s. this little corner is just for you.</span>
+      <h1 id="intro-heading" tabIndex={-1}>Хамт<br /><em>гарах уу?</em></h1>
+      <p className="intro-description">Хамт хийж болох хэдэн санаа байна.<br />Сонирхоод үзээрэй.</p>
+      <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Нээж байна…' : 'Санаануудыг харах'} <Arrow /></button>
     </div>
     <div className="intro-photo-scene">
       <div className="intro-glimpses">{glimpses.map(date => <div className={'intro-glimpse glimpse-' + date.id} key={date.id}><Photo photo={date.cover} eager /></div>)}</div>
       <Sparkle className="intro-photo-sparkle" />
-      <button className="envelope" onClick={open} disabled={opening} aria-label="Захиагаа нээх">
-        <span className="letter-insert"><span className="handwritten">Хөөрхөн чамдаа,</span><span className="letter-lines" /><Heart /></span>
+      <button className="envelope" onClick={open} disabled={opening} aria-label="Санаануудыг харах">
+        <span className="letter-insert"><span className="handwritten">Сайн уу,</span><span className="letter-lines" /></span>
         <span className="envelope-back" />
         <span className="envelope-flap" />
-        <span className="envelope-front"><span className="recipient">ХҮЛЭЭН АВАХ: ЧИ<br /><span>ЖААХАН ЗОРИГ ГАРГААД, НАДААС.</span></span><span className="postage-stamp"><Flower /><span>чамдаа</span></span></span>
+        <span className="envelope-front"><span className="recipient">УРИЛГА<br /><span>ХАМТ ХИЙХ ЗҮЙЛС</span></span><span className="postage-stamp"><Flower /><span>нээх</span></span></span>
         <span className="wax-seal"><Heart filled /></span>
       </button>
     </div>
-    <div className="intro-bottom"><span>01 / БЯЦХАН ЗАХИА</span><span>Нээгээд үз. Нэг хөөрхөн зүйл бий. <Arrow /></span></div>
+    <div className="intro-bottom" aria-hidden="true" />
   </section>
 }

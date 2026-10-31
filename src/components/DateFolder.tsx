@@ -9,7 +9,7 @@ export function DateFolder({ date, seen, selected, onOpen }: { date: DateIdea; s
   const secondary = date.photos.find(photo => photo.src !== date.cover.src)
   return <button
     className={['date-folder', 'folder-' + date.id, selected ? 'is-selected' : ''].join(' ')}
-    style={{ '--paper': date.id === 'clayface' ? date.palette.paper : '#fff7f2', '--ink': date.id === 'clayface' ? date.palette.ink : '#633747', '--accent': date.id === 'clayface' ? date.palette.accent : '#ad4f6d' } as CSSProperties}
+    style={{ '--paper': date.palette.paper, '--ink': date.palette.ink, '--accent': date.palette.accent } as CSSProperties}
     onClick={onOpen}
     aria-label={date.title + ' — дэлгэрэнгүй' + (selected ? ', чиний сонголт' : '')}
   >

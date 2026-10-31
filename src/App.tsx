@@ -51,7 +51,7 @@ export default function App() {
   useEffect(() => {
     document.title = view === 'letter' ? 'Санаанууд' : current ? `${current.title} · Бидний бяцхан санаанууд` : view === 'confirmation' ? 'Хариуг чинь хүлээж авлаа ♡' : 'Чамд бичсэн бяцхан захиа ♡'
     if (initial.current) { initial.current = false; return }
-    requestAnimationFrame(() => main.current?.querySelector<HTMLElement>('h1, .intro-copy > button')?.focus({ preventScroll: true }))
+    requestAnimationFrame(() => main.current?.querySelector<HTMLElement>('h1, .intro-open')?.focus({ preventScroll: true }))
   }, [view, current])
   useEffect(() => {
     if (current && !invitation.visited.includes(current.id)) invitation.visit(current.id)

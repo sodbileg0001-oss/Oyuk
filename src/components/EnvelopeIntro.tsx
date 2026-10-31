@@ -15,9 +15,7 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
     timer.current = setTimeout(onOpen, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650)
   }
   return <section className={`intro page-enter ${opening ? 'is-opening' : ''}`} aria-label="Санаанууд">
-    <div className="intro-copy">
-      <button className="button button-primary" onClick={open} disabled={opening}>{opening ? 'Нээж байна…' : 'Үзэх'} <Arrow /></button>
-    </div>
+    <div className="intro-garden" aria-hidden="true" />
     <div className="intro-photo-scene">
       <div className="intro-glimpses">{glimpses.map(date => <div className={'intro-glimpse glimpse-' + date.id} key={date.id}><Photo photo={date.cover} eager /></div>)}</div>
       <Sparkle className="intro-photo-sparkle" />
@@ -28,6 +26,7 @@ export function EnvelopeIntro({ onOpen }: { onOpen: () => void }) {
         <span className="envelope-front"><span className="postage-stamp"><Flower /></span></span>
         <span className="wax-seal"><Heart filled /></span>
       </button>
+      <button className="button intro-open" onClick={open} disabled={opening}>{opening ? 'Нээж байна…' : 'Үзэх'} <Arrow /></button>
     </div>
     <div className="intro-bottom" aria-hidden="true" />
   </section>

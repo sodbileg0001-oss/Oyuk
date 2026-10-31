@@ -31,7 +31,7 @@ export default function App() {
   const current = getDate(view)
   const confirmedDate = getDate(invitation.receipt?.selectedDateId ?? null)
   const questionDate = submission.locked ? getDate(submission.draft.selectedDateId) : selected
-  const pageBackground = current?.palette.background ?? '#f4f0e5'
+  const pageBackground = current?.id === 'clayface' ? current.palette.background : view === 'letter' ? '#101d16' : view === 'question' ? '#421d20' : '#eeecdf'
 
   function navigate(next: View, replace = false) {
     if (replace) history.replaceState(null, '', `#${next}`)
@@ -67,6 +67,7 @@ export default function App() {
   function restart() { if (submission.busy || submission.locked) return; submission.clear(); invitation.restart(); navigate('letter', true) }
 
   return <div className={`app view-${view}`} style={{ backgroundColor: pageBackground }}>
+    {view === 'letter' && <div className="garden-backdrop" aria-hidden="true"><img src="/theme/garden-pond.png" alt="" decoding="async" /></div>}
     {current?.id === 'clayface' && <div className="cinema-backdrop" aria-hidden="true"><img src={current.cover.src} alt="" decoding="async" /></div>}
     <a href="#main-content" className="skip-link" onClick={event => { event.preventDefault(); main.current?.focus() }}>Үндсэн хэсэг рүү очих</a>
     <Navigation intro={view === 'letter'} accepted={invitation.accepted} locked={submission.busy || submission.locked} onHome={() => { if (view !== 'letter') navigate('options') }} onQuestion={() => navigate(invitation.accepted ? 'confirmation' : 'question')} onRestart={restart} />

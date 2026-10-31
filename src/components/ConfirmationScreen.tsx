@@ -16,7 +16,7 @@ export function ConfirmationScreen({ selected, response, preferredDay, onBack, o
       <h1 id="confirmation-heading" tabIndex={-1}>{headline}</h1>
       <p>{yes ? 'Хамтдаа сайхан цаг өнгөрөөе.' : response === 'maybe' ? 'Хэрэгтэй хугацаагаа аваарай. Чиний хариуг хүндэтгэнэ ээ.' : 'Үнэнээ хэлсэнд баярлалаа. Чамд сайхан бүхнийг хүсье.'}</p>
     </div>
-    {selected ? <div className={`confirmation-recap recap-${selected.id}`} style={{ backgroundColor: selected.palette.paper, color: selected.palette.ink, borderColor: `${selected.palette.accent}55` }}>
+    {selected ? <div className={`confirmation-recap recap-${selected.id}`} style={{ backgroundColor: '#e4dcc5', color: '#442b27', borderColor: '#a99168' }}>
       <div className="recap-photo"><Photo photo={selected.cover} eager /></div>
       <div className="recap-copy"><span className="eyebrow">{yes ? 'СОНГОСОН БОЛЗОО' : 'СОНИРХСОН БЯЦХАН САНАА'} · {selected.number}</span><h2 lang={selected.titleLanguage}>{selected.title}</h2><p>{selected.timing}</p><span className="handwritten">{yes ? preferredDay ? 'Яг цагаа хамтдаа тохиръё.' : 'Өдөр, цагаа хамтдаа тохиръё.' : 'хариунд чинь энэ санааг тэмдэглэлээ.'}</span><button className="text-link" onClick={onDetail}>Санаагаа дахин харах <Arrow /></button></div>
       <Heart className="recap-heart" />

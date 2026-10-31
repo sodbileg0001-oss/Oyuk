@@ -295,6 +295,10 @@
     "instructionFile": "content/clayface.md",
     "notes": [
       {
+        "filename": "Ticket available at.txt",
+        "text": "Ticket available at:\r\n\r\nhttps://www.tix.mn/movies/clayface"
+      },
+      {
         "filename": "content/clayface.md",
         "source": "project",
         "text": "# Clayface movie\n\nThe invitation's author added the Clayface folder as a new movie date idea.\nKeep all eight supplied movie images in the source archive. The author then\nrequested one chosen photo as the background: use b6ecvb8oo2.webp for the\nfull-screen date page and the movie folder cover, without a poster gallery.\n\nNo cinema, local release date, showtime, ticket price, booking, or viewing\navailability was supplied. Agree on a day and check viewing options together.\nDates printed on the supplied posters are artwork, not verified local showtimes."
